@@ -1,26 +1,53 @@
 
 
-## Payspec Bot
-
-This bot will have an internal mongo database with
-  1) Pre-Invoices  (perpared invoices, not yet committed to the blockchain )
-  2) A list of deployed invoices by UUID
+## Shopman Server
 
 
-Will serve an express website with:
 
-1) A customer-facing portal with
-  * a 'show invoices' page that serves the invoice data from the mongo database
-  (static page, uses metamask)
-
-2) An admin backend (requires console-generated password)  with
-  * a list of all invoices cached from mongo, searchable
+# have an artist make cool etherpunks swag , funny references to vitalik , llamas, etc .
 
 
-3) a local API
-  * can generate and store a pre-invoice and provide the 'show invoice' page URL
-  * can retrieve data from the ethereum blockchain related to the invoices state on-chain
-https://www.engineyard.com/blog/rails-and-vue-js-part-1
+2) add image uploads
+
+https://medium.com/@anaharris/how-to-add-image-upload-functionality-to-your-rails-app-9f7fc3f3d042
+
+
+
+
+## Devise TODO
+
+===============================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+     In production, :host should be set to the actual host of your application.
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root to: "home#index"
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+  4. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
+
+===============================================================================
+
+
+
+
 
 
 

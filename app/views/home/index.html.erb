@@ -1,10 +1,10 @@
 <div class="hero-head" id="home">
 
-  <section class="hero is-primary is-medium"  >
+  <section class="hero is-primary slate-theme-dark is-medium"  >
 <div class="hero-body">
 <div class="container">
   <div class="header-titles">
-      <img src="<%= image_url 'senderclogo.png'%>"></img>
+      <img src="<%= image_url 'cryptopunk1164.png'%>"></img>
       <!--
     <h3 class="title is-3 is-spaced">Nametag Token</h3>
     <h5 class="subtitle is-5 is-spaced">Your crypto handle.</h5>
@@ -13,13 +13,13 @@
 
 
   <div class="row" >
-    <div class="is-size-4 font-raleway" style="margin-left:2em;"> Payspec Server - Token Payments </div>
+    <div class="is-size-4 font-raleway" style="margin-left:2em;"> Etherpunks - ETH Token Shop </div>
   </div>
 
   <div class="header-buttons pull-right">
 
     <span class="control ">
-      <a class="button is-info is-size-5" target="_blank" href="https://github.com/payspec">
+      <a class="button is-info is-size-5" target="_blank" href="https://github.com/admazzola/shopman-server">
         <span class="icon">
           <i class="fab fa-github"></i>
         </span>
@@ -52,9 +52,27 @@
 <div class="container">
 
 
-  <div id="eth-container" class="eth-container box" v-cloak    >
 
 
+
+   <div class="columns">
+
+        <div class="tabs">
+          <ul>
+            <li class="is-active"><a>Stickers</a></li>
+            <li><a>Shirts</a></li>
+            <li><a>Ties</a></li>
+            <li><a>Trinkets</a></li>
+          </ul>
+        </div>
+
+
+   </div>
+
+
+
+
+  <div id="eth-container" class="eth-container box" v-if=false v-cloak    >
 
 
     <div class="columns">
@@ -97,102 +115,6 @@
    </div>
 
   </div>
-
-
-  <div class="columns">
-
-    <div class="content column is-6 is-offset-3">
-
-
-      <div id="create-invoice-input" class="main-text box" v-cloak    >
-
-
-      <div class="whitespace-md"></div>
-
-
-      <div class="columns">
-        <div class="column">
-           <h4 class=" is-size-4 is-4 is-spaced">Create an Invoice</h4>
-        </div>
-        <!-- <div class="column">
-          <div class="pull-right" v-if='showAvailability' v-cloak>
-            <span class="tag is-success" v-if='nametagAvailable'>Available</span>
-            <span class="tag is-danger" v-if='!nametagAvailable'>Not Available</span>
-          </div>
-        </div> -->
-      </div>
-
-
-      <div class="field">
-        <label class="label"> Recipient Address </label>
-        <div class="control">
-          <input class="input is-large   " type="text" placeholder=" "  v-on:change="inputChange" v-on:keyup="keyUp" v-model='recipientAddress'>
-        </div>
-       </div>
-
-      <div class="field">
-        <label class="label"> Token Address </label>
-        <div class="control">
-          <input class="input is-large   " type="text" placeholder=" "  v-on:change="inputChange" v-on:keyup="keyUp" v-model='tokenAddress'>
-        </div>
-       </div>
-
-
-       <div class="field">
-         <label class="label"> Tokens Amount Due </label>
-         <div class="control">
-           <input class="input is-large   " type="text" placeholder=" "  v-on:change="inputChange" v-on:keyup="keyUp" v-model='tokenAmount'>
-         </div>
-        </div>
-
-        <div class="field">
-          <label class="label"> Description Note </label>
-          <div class="control">
-            <input class="input is-large   " type="text" placeholder=" "  v-on:change="inputChange" v-on:keyup="keyUp" v-model='description'>
-          </div>
-         </div>
-
-         <div class="field">
-           <label class="label"> Reference Number </label>
-           <div class="control">
-             <input class="input is-large   " type="text" placeholder=" "  v-on:change="inputChange" v-on:keyup="keyUp" v-model='refNumber'>
-           </div>
-          </div>
-
-        <div class="pull-right">
-          <div  v-bind:disabled="!(web3connected)"   class="button is-large" v-on:click='onSubmitNewInvoice'>
-            <span class=" ">
-              <i class="fab fa-ethereum" style="margin-right:1em"></i>
-            </span>
-            <span> Submit </span>
-          </div>
-        </div>
-
-
-        <div class="field" v-if='predictedUUID'>
-          <label class="label"> Output: Invoice UUID </label>
-          <div class="control">
-            <span class="tag is-success" >{{predictedUUID}}</span>
-          </div>
-         </div>
-
-         <div class="field" v-if='predictedUUID'>
-           <label class="label">   </label>
-           <div class="control">
-            <a v-bind:href="predictedInvoiceURL"> View and Pay Invoice </a>
-           </div>
-          </div>
-
-
-        </div>
-
-    </div>
-
-
-
-  </div>
-
-
 
 <!--
   <div class="columns">

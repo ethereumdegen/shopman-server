@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Payspec Platform</title>
+
+
+    <title><%= Rails.configuration.APPNAME %></title>
+
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,10 +17,12 @@
     <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
 
 
+        <%= render  'shared/head' %>
+
   </head>
 
   <body>
-      <% render  'shared/alert' %>
+      <%= render  'shared/alert' %>
 
     <%= yield %>
 

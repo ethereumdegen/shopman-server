@@ -6,6 +6,9 @@ var ethUrlParser = require('eth-url-parser')
 
 var QRCode = require('qrcode')
 
+
+
+
 const ContractInterface = require('./contract-interface')
 
 var invoiceData;

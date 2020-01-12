@@ -1,0 +1,2 @@
+
+Rails.configuration.APPNAME = 'Etherpunks'

@@ -11,6 +11,12 @@ import GenericDashboard from './generic-dashboard'
 
 import InvoiceRenderer from './invoice-renderer'
 
+
+
+var payspecCli = require ('payspec-cli')
+
+
+
 var url = require('url');
 
 var web3utils = require('web3-utils')
@@ -26,10 +32,13 @@ var invoiceRenderer;
 
 
 $(document).ready(function(){
-    var urlstring = window.location.href ;
+
+          var urlstring = window.location.href ;
 
 
-          //why is this broken ?
+            console.log( payspecCli )
+
+          console.log('ping', payspecCli.ping())
 
 
           var url_parts = url.parse(urlstring, true);
