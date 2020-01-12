@@ -4,14 +4,13 @@
 
 
 
-# have an artist make cool etherpunks swag , funny references to vitalik , llamas, etc .
-
 
 2) add image uploads
 
 https://medium.com/@anaharris/how-to-add-image-upload-functionality-to-your-rails-app-9f7fc3f3d042
 
 
+have an artist make cool etherpunks swag , funny references to vitalik , llamas, etc .
 
 
 ## Devise TODO
