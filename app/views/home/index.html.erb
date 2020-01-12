@@ -86,59 +86,10 @@
    </div>
 
 
-        <div class="columns " id="product-cards" v-cloak>
+
+          <%= render 'shared/products/active_products_container' %>
 
 
-          <div class="column is-one-quarter" v-for="(item,index) in activeProducts" >
-
-          <div class="card" >
-
-            <a v-bind:href="item.url">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img class="image-cover" v-bind:src="item.thumbnailURL" alt="Placeholder image">
-              </figure>
-            </div>
-            </a>
-
-            <div class="card-content">
-
-
-              <div class="media">
-
-                <div class="media-content">
-                  <div class="content-row ">
-                      <div class="title is-4 overflow-ellipsis">{{item.name}}</div>
-                  </div>
-
-                  <div class="content-row  ">
-                      <div class="subtitle is-6 overflow-ellipsis">Sold by <a v-bind:href="item.seller.url">{{item.seller.name}}</a></div>
-                  </div>
-
-                </div>
-
-
-              </div>
-
-              <div class="content">
-
-                <div class="content-row centered ">
-                    <div class="subtitle is-8 overflow-ellipsis">
-                         <div style="display:inline-block; text-align:top; ">  <img v-bind:src="item.price_data.price_currency.thumbnailURL" height="16px" width="16px"></img> </div>
-                         <div style="display:inline-block; text-align:top; ">  {{item.price_data.price_formatted}} </div>
-                    </div>
-                </div>
-
-
-
-              </div>
-            </div>
-          </div>
-
-        </div><!-- column -->
-
-
-        </div>
 
 
    </div>

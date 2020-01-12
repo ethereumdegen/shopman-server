@@ -1,2 +1,31 @@
-<h1>Product#show</h1>
-<p>Find me in app/views/product/show.html.erb</p>
+
+<script type="text/javascript">
+//load in data from rails db
+
+
+  var product = <%= raw @product.getExportData.to_json  %> ;
+
+
+</script>
+
+
+<div class="container constrained pad-md">
+
+
+
+  <div class="columns">
+
+    <div class="column is-one-third">
+      image
+    </div>
+    <div class="column is-two-thirds">
+      <h1>Product#show</h1>
+      <p>Find me in app/views/product/show.html.erb</p>
+
+    </div>
+
+
+  </div>
+
+
+</div>

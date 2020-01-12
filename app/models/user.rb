@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
    has_one_attached :thumbnail
 
-
+   
 
 
    def getThumbnailURL

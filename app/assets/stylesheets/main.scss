@@ -28,6 +28,30 @@ a
 
 }
 
+.constrained
+{
+  max-width:1024px;
+  margin:0 auto;
+}
+
+
+.pad-sm
+{
+  padding: 1em;
+}
+
+.pad-md
+{
+  padding: 2em;
+}
+
+.pad-lg
+{
+  padding: 3em;
+}
+
+
+
 .overflow-ellipsis
 {
   text-overflow: ellipsis;
@@ -39,6 +63,12 @@ overflow: hidden;
 {
       object-fit: cover;
 }
+
+.fullheight
+{
+  min-height:100%;
+}
+
 
 
 .font-hyper

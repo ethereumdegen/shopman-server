@@ -21,32 +21,34 @@
   </head>
 
   <body class="fullheight">
+
+
       <%= render  'shared/alert' %>
 
 
 
 
-            <div class="fullheight-wrapper fullheight">
+      <div class="fullheight-wrapper fullheight">
 
-              <%= content_for?(:navbar) ? yield(:navbar) : render('shared/navbar') %>
-
-               <div class="fullheight">
+         <%= content_for?(:navbar) ? yield(:navbar) : render('shared/navbar') %>
 
 
-
-
-                     <%= content_for?(:content) ? yield(:content) : yield %>
+         <div class="fullheight">
 
 
 
-               </div>
+               <%= content_for?(:content) ? yield(:content) : yield %>
 
-             </div>
+
+         </div>
 
 
 
 
-    <%= content_for?(:footer) ? yield(:footer) : render('shared/footer') %>
+
+  </div>
+  <%= content_for?(:footer) ? yield(:footer) : render('shared/footer') %>
+
 
   </body>
 </html>

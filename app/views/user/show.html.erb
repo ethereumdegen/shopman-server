@@ -1,2 +1,38 @@
-<h1>User#show</h1>
-<p>Find me in app/views/user/show.html.erb</p>
+<script type="text/javascript">
+//load in data from rails db
+
+
+  var user = <%= raw @user.getExportData.to_json  %> ;
+  var featuredProducts = <%= raw @featuredProducts.to_json  %> ;
+
+
+</script>
+
+
+<div class="container constrained pad-md">
+
+
+
+  <div class="columns">
+
+
+    <div class="column is-two-thirds">
+      <h1> <%= @user.name %> </h1>
+
+    </div>
+
+    <div class="column is-one-third">
+      <img src="<%= @user.getThumbnailURL  %> "> </img>
+    </div>
+
+  </div>
+
+
+  <div class="">
+
+    <%= render 'shared/products/active_products_container' %>
+
+  </div>
+
+
+</div>
