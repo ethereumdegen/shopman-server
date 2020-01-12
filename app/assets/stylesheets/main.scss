@@ -28,6 +28,13 @@ a
 
 }
 
+.overflow-ellipsis
+{
+  text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+
 .font-hyper
 {
     font-family: 'Titillium Web', sans-serif;

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'user/show'
   devise_for :users
 
   resources :user_session
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
 
   #get 'product/index'
   #get 'product/new'
-
+  resources :user
   resources :product
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

@@ -87,25 +87,35 @@
         <div class="columns " id="product-cards" v-cloak>
 
 
-          <div class="column is-one-quarter" v-for="(item,index) in products" >
-          <a v-bind:href="item.url">
+          <div class="column is-one-quarter" v-for="(item,index) in activeProducts" >
+
           <div class="card" >
+
+            <a v-bind:href="item.url">
             <div class="card-image">
               <figure class="image is-4by3">
                 <img v-bind:src="item.thumbnailURL" alt="Placeholder image">
               </figure>
             </div>
+            </a>
+
             <div class="card-content">
+
+
               <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                  </figure>
-                </div>
+
                 <div class="media-content">
-                  <p class="title is-4">{{item.name}}</p>
-                  <p class="subtitle is-6">@johnsmith</p>
+                  <div class="content-row ">
+                      <div class="title is-4 overflow-ellipsis">{{item.name}}</div>
+                  </div>
+
+                  <div class="content-row  ">
+                      <div class="subtitle is-6 overflow-ellipsis">Sold by <a v-bind:href="item.seller.url">{{item.seller.name}}</a></div>
+                  </div>
+
                 </div>
+
+
               </div>
 
               <div class="content">
@@ -117,7 +127,7 @@
               </div>
             </div>
           </div>
-        </a>
+
         </div><!-- column -->
 
 

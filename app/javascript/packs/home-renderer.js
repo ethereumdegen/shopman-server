@@ -64,7 +64,6 @@ export default class HomeRenderer {
                products: featuredProducts,
                activeProducts: []
 
-
             },
             methods: {
 
@@ -78,12 +77,27 @@ export default class HomeRenderer {
           })
 
 
+          //init data
+          this.selectedProductCategory(firstcategoryid)
 
     }
 
     selectedProductCategory(index)
     {
       console.log('selected category',index)
+
+      this.updateActiveProducts();
+    }
+
+    updateActiveProducts()
+    {
+      var newArray = [];
+
+     newArray = productCards.products.filter(item => item.product_category_id == categoryTabSelector.activeTagIndex)
+
+
+      Vue.set(productCards, 'activeProducts', newArray)
+
     }
 
 
