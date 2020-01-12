@@ -54,14 +54,7 @@ export default class HomeRenderer {
                    this.activeTagIndex = index;
                 },
 
-                inputChange: function (event) {
-                  console.log('input change',  this.inputName, event)
-
-                //  self.checkNameAvailability( this.inputName );
-                },
-                onSelectTab: async function (event){
-                  console.log('select tab')
-                }
+               
             }
 
         })
