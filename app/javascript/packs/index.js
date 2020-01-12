@@ -12,10 +12,7 @@ import GenericDashboard from './generic-dashboard'
 import InvoiceRenderer from './invoice-renderer'
 
 
-
-var payspecCli = require ('payspec-cli')
-
-
+ 
 
 var url = require('url');
 
@@ -36,7 +33,7 @@ $(document).ready(function(){
           var urlstring = window.location.href ;
 
 
-         
+
 
 
           var url_parts = url.parse(urlstring, true);

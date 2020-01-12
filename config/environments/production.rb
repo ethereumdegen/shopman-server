@@ -64,9 +64,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "payspec-server_#{Rails.env}"
 
 
-  # CHANGE ME 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  # CHANGE ME  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  config.action_mailer.default_url_options = { host: 'etherpunks.com', port: 3000 }
+  Rails.application.routes.default_url_options[:host] = 'etherpunks.com'
 
 
   config.action_mailer.perform_caching = false
