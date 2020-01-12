@@ -1,16 +1,12 @@
-require 'jsonrpc-client'
-
+include PayspecBotHelper
 
 class HomeController < ApplicationController
 
 
 
 def index
+  PayspecBotHelper.remoteping
 
-  client = JSONRPC::Client.new('http://localhost:7071')
-  res = client.ping( )
-  p 'response is '
-  p res
 end
 
 
