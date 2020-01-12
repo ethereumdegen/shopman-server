@@ -19,7 +19,11 @@
 
 
     <div class="column is-two-thirds">
-      <h1> <%= @user.name %> </h1>
+      <h1 class="title"> <%= @user.name %> </h1>
+
+      <h2> Selling <%= @user.products.count %> listed items. </h2>
+
+      <h2> Registered <%= @user.created_at %> </h2>
 
     </div>
 
@@ -30,11 +34,13 @@
   </div>
 
 
+    <% if @featuredProducts && @featuredProducts.length > 0 %>
   <div class="">
 
     <%= render 'shared/products/active_products_container' %>
 
   </div>
+    <% end %>
 
 
 </div>

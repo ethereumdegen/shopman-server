@@ -62,11 +62,15 @@ $(document).ready(function(){
 
       if($("#user-show").length > 0){
 
-
-
         var activeProductsContainerRenderer = new ActiveProductsContainerRenderer();
         activeProductsContainerRenderer.init();
 
+      }
+
+      if($("#product-show").length > 0){
+
+        var activeProductsContainerRenderer = new ActiveProductsContainerRenderer();
+        activeProductsContainerRenderer.init();
 
       }
 

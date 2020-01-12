@@ -2,30 +2,76 @@
 <script type="text/javascript">
 //load in data from rails db
 
+  var activeProductContainerOptions = {filterByCategories: false};
+
+
 
   var product = <%= raw @product.getExportData.to_json  %> ;
+
+
+  var featuredProducts = <%= raw @featuredProducts.to_json  %> ;
+
 
 
 </script>
 
 
-<div class="container constrained pad-md">
-
+<div class="container constrained pad-md" id="product-show">
 
 
   <div class="columns">
 
+
+        <div class="column is-one-third">
+          <img src="<%= @product.getThumbnailURL  %> "> </img>
+        </div>
+
+        <div class="column is-one-third">
+
+        </div>
+
     <div class="column is-one-third">
-      image
-    </div>
-    <div class="column is-two-thirds">
-      <h1>Product#show</h1>
-      <p>Find me in app/views/product/show.html.erb</p>
+      <h1 class="title"> <%= @product.name %> </h1>
+      <hr>
+      <h2 class="subtitle" style="min-height:25vh"> <%= @product.description %> </h2>
+      <hr>
+
+      <div class="content-row centered ">
+          <div class="subtitle is-8 overflow-ellipsis">
+             Price:
+
+               <div style="display:inline-block; text-align:top; ">  <img src="<%= @product.price_currency.getThumbnailURL %>" height="16px" width="16px"></img> </div>
+               <div style="display:inline-block; text-align:top; ">  <%=  @product.getPriceData[:price_formatted] %>  </div>
+          </div>
+
+          <div class="subtitle is-8 overflow-ellipsis">
+             Est. Ship Time (days):
+
+             <div style="display:inline-block; text-align:top; ">  <%= @product.est_shipping_days %> </div>
+
+          </div>
+
+          <div>
+            <div class="button"> Add To Cart </div>
+          </div>
+      </div>
 
     </div>
-
 
   </div>
+
+  <div class="whitespace-md"></div>
+
+  <% if @featuredProducts && @featuredProducts.length > 0 %>
+  <h1 class="title"> You may also like... </h1>
+
+  <div class="">
+
+    <%= render 'shared/products/active_products_container' %>
+
+  </div>
+
+  <% end %>
 
 
 </div>

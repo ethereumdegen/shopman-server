@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
    has_one_attached :thumbnail
 
-   
+   has_many :products, foreign_key: :seller_id
 
 
    def getThumbnailURL

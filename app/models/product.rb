@@ -8,6 +8,8 @@ class Product < ApplicationRecord
 
   validates :price_currency_id , :presence => true
 
+  validates :est_shipping_days , :presence => true
+
 
 
   has_one_attached :thumbnail
