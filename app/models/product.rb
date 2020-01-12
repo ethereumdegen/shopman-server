@@ -1,4 +1,4 @@
-include Rails.application.routes.url_helpers
+#include Rails.application.routes.url_helpers
 class Product < ApplicationRecord
 
 
@@ -13,12 +13,16 @@ class Product < ApplicationRecord
 
   def getThumbnailURL
   #  return url_for(self.thumbnail )
-    return rails_blob_path(self.thumbnail) if self.thumbnail.attachment
+    return Rails.application.routes.url_helpers.rails_blob_path(self.thumbnail) if self.thumbnail.attachment
   end
 
 
   def getExportData
-    return {id:self.id, product_category_id: self.product_category_id, name: self.name, thumbnailURL: self.getThumbnailURL }
+    return {id:self.id,
+      product_category_id: self.product_category_id,
+      name: self.name,
+      thumbnailURL: self.getThumbnailURL,
+       url: Rails.application.routes.url_helpers.url_for(self) }
   end
 
 end

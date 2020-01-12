@@ -84,11 +84,12 @@
    </div>
 
 
-        <div class="container" id="product-cards" v-cloak>
+        <div class="columns " id="product-cards" v-cloak>
 
 
-
-          <div class="card" v-for="(item,index) in products">
+          <div class="column is-one-quarter" v-for="(item,index) in products" >
+          <a v-bind:href="item.url">
+          <div class="card" >
             <div class="card-image">
               <figure class="image is-4by3">
                 <img v-bind:src="item.thumbnailURL" alt="Placeholder image">
@@ -116,7 +117,8 @@
               </div>
             </div>
           </div>
-
+        </a>
+        </div><!-- column -->
 
 
         </div>
