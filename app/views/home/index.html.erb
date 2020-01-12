@@ -1,8 +1,10 @@
 <script type="text/javascript">
 //load in data from rails db
 
+  var activeProductContainerOptions = {filterByCategories: true};
 
   var allcategories = <%= raw ProductCategory.all.to_json  %> ;
+
   var featuredProducts = <%= raw @featuredProducts.to_json  %> ;
 
   var firstcategoryid =  <%= raw ProductCategory.all.first.id  %> ;

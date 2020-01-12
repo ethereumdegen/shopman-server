@@ -1,6 +1,8 @@
 <script type="text/javascript">
 //load in data from rails db
 
+  var activeProductContainerOptions = {filterByCategories: false};
+
 
   var user = <%= raw @user.getExportData.to_json  %> ;
   var featuredProducts = <%= raw @featuredProducts.to_json  %> ;
@@ -9,7 +11,7 @@
 </script>
 
 
-<div class="container constrained pad-md">
+<div class="container constrained pad-md" id="user-show">
 
 
 

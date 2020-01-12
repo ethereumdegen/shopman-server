@@ -19,16 +19,17 @@ export default class GenericDashboard {
 
 
 
-    ethHelper = new EthHelper(   );
-    ethHelper.init();
+    //ethHelper = new EthHelper(   );
+    //ethHelper.init();
 
 
 
-    renderer.init( ethHelper, request  );
+    renderer.init(  request  );
 
-    ethHelper.bindOnConnected( function() {
+    /*ethHelper.bindOnConnected( function() {
         renderer.onWeb3Connected();
       })
+      */
 
   }
 

@@ -4,15 +4,17 @@ var $ = require("jquery");
 
 import Vue from 'vue/dist/vue.esm.js';
 
+import GenericDashboard from './generic-dashboard'
+
 import AlertRenderer from './alert-renderer'
 
 import HomeRenderer from './home-renderer'
-import GenericDashboard from './generic-dashboard'
 
 import InvoiceRenderer from './invoice-renderer'
 
+import ActiveProductsContainerRenderer from './products/active-product-container-renderer'
 
- 
+
 
 var url = require('url');
 
@@ -51,7 +53,23 @@ $(document).ready(function(){
         genericDashboard.init(homeRenderer, query);
 
 
+        var activeProductsContainerRenderer = new ActiveProductsContainerRenderer();
+        activeProductsContainerRenderer.init();
+
+
       }
+
+
+      if($("#user-show").length > 0){
+
+
+
+        var activeProductsContainerRenderer = new ActiveProductsContainerRenderer();
+        activeProductsContainerRenderer.init();
+
+
+      }
+
 
       if($("#invoice").length > 0){
 

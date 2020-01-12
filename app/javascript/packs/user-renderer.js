@@ -20,18 +20,19 @@ var dashboardData;
 var categoryTabSelector;
 var productCards;
 
+  
 
 
 export default class HomeRenderer {
 
-    init(  params  )
+    init( ethHelper, params  )
     {
 
       var self = this;
-    //  ethereumHelper = ethHelper;
+      ethereumHelper = ethHelper;
 
 
-    /*  categoryTabSelector = new Vue({
+      categoryTabSelector = new Vue({
           el: '#category-tabs',
           data: {
              activeTagIndex: firstcategoryid,
@@ -72,10 +73,10 @@ export default class HomeRenderer {
 
           //init data
           this.selectedProductCategory(firstcategoryid)
-          */
+
     }
 
-  /*  selectedProductCategory(index)
+    selectedProductCategory(index)
     {
       console.log('selected category',index)
 
@@ -91,17 +92,21 @@ export default class HomeRenderer {
 
       Vue.set(productCards, 'activeProducts', newArray)
 
-    }*/
+    }
 
 
-    /*
     async onWeb3Connected() //from eth helper callback
     {
       var self = this;
         console.log('on web3 connected')
 
+
+
+
+
+
+
     }
-    */
 
     async getInvoiceUUID( newInvoiceData, ethHelper )
     {
