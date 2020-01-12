@@ -36,9 +36,7 @@ $(document).ready(function(){
           var urlstring = window.location.href ;
 
 
-            console.log( payspecCli )
-
-          console.log('ping', payspecCli.ping())
+         
 
 
           var url_parts = url.parse(urlstring, true);

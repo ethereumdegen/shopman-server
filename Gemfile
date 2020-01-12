@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
 
+gem 'jsonrpc-client', '~> 0.1.3'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
