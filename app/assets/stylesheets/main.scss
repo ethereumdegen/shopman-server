@@ -35,6 +35,12 @@ white-space: nowrap;
 overflow: hidden;
 }
 
+.image-cover
+{
+      object-fit: cover;
+}
+
+
 .font-hyper
 {
     font-family: 'Titillium Web', sans-serif;

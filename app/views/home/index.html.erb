@@ -7,6 +7,8 @@
 
   var firstcategoryid =  <%= raw ProductCategory.all.first.id  %> ;
 
+
+
 </script>
 
 
@@ -94,7 +96,7 @@
             <a v-bind:href="item.url">
             <div class="card-image">
               <figure class="image is-4by3">
-                <img v-bind:src="item.thumbnailURL" alt="Placeholder image">
+                <img class="image-cover" v-bind:src="item.thumbnailURL" alt="Placeholder image">
               </figure>
             </div>
             </a>
@@ -119,11 +121,16 @@
               </div>
 
               <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                <a href="#">#css</a> <a href="#">#responsive</a>
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+
+                <div class="content-row centered ">
+                    <div class="subtitle is-8 overflow-ellipsis">
+                         <div style="display:inline-block; text-align:top; ">  <img v-bind:src="item.price_data.price_currency.thumbnailURL" height="16px" width="16px"></img> </div>
+                         <div style="display:inline-block; text-align:top; ">  {{item.price_data.price_formatted}} </div>
+                    </div>
+                </div>
+
+
+
               </div>
             </div>
           </div>

@@ -1,6 +1,9 @@
 #include Rails.application.routes.url_helpers
 class Product < ApplicationRecord
 
+  include CurrencyHelper
+
+
   validates :seller_id , :presence => true
 
   validates :price_currency_id , :presence => true
@@ -23,7 +26,11 @@ class Product < ApplicationRecord
   end
 
   def getPriceData
-    return {currency: self.price_currency.getExportData, price_raw_units: self.price_raw_units}
+    return {
+      price_currency: self.price_currency.getExportData,
+      price_raw_units: self.price_raw_units,
+      price_formatted: CurrencyHelper.getPriceFormatted({raw_units: self.price_raw_units, currency: self.price_currency})
+    }
   end
 
 
