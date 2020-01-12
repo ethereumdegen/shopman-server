@@ -18,7 +18,7 @@ var dashboardData;
 
 
 var categoryTabSelector;
-var payInvoiceInput;
+var productCards;
 
 
 var tokenIdQuery;
@@ -38,11 +38,10 @@ export default class HomeRenderer {
       ethereumHelper = ethHelper;
 
 
-
       categoryTabSelector = new Vue({
           el: '#category-tabs',
           data: {
-             activeTagIndex: 0,
+             activeTagIndex: firstcategoryid,
              categories: allcategories,
 
 
@@ -50,112 +49,51 @@ export default class HomeRenderer {
           methods: {
 
                 clickTab: function (event,index) {
-                   console.log(index)
                    this.activeTagIndex = index;
-                },
+                   self.selectedProductCategory(index)
+                }
 
-               
+
             }
 
         })
 
-
-        /*payInvoiceInput = new Vue({
-            el: '#pay-invoice-input',
+        productCards= new Vue({
+            el: '#product-cards',
             data: {
-               invoiceUUID: '',
+               products: featuredProducts,
+               activeProducts: []
 
-               web3connected: false
+
             },
             methods: {
-                  keyUp: function (event) {
-                     //Vue.set(createInvoiceInput, 'showAvailability', false)
-                  },
-                  inputChange: function (event) {
-                    console.log('input change',  this.inputName, event)
 
-                  //  self.checkNameAvailability( this.inputName );
-                  },
-                  onSubmitNewInvoice: function (event){
-                    console.log('pay invoice ', this.invoiceUUID)
-                    //self.claimName( this.inputName )
-
-
-
-                    self.payInvoice( this.invoiceUUID )
+                  clickCard: function (event,index) {
+                      console.log('index')
                   }
+
+
               }
-          })*/
 
-
-
+          })
 
 
 
     }
+
+    selectedProductCategory(index)
+    {
+      console.log('selected category',index)
+    }
+
 
     async onWeb3Connected() //from eth helper callback
     {
       var self = this;
         console.log('on web3 connected')
 
-        Vue.set(createInvoiceInput, 'web3connected', true)
-        Vue.set(payInvoiceInput, 'web3connected', true)
 
 
-
-        tokenIdQuery = new Vue({
-            el: '#tokenIdQuery',
-            data: {
-               queryName: '',
-               tokenIdResult: ''
-            },
-            methods: {
-                  onSubmit: function (event){
-                    self.queryTokenId( this.queryName )
-                  }
-              }
-          })
-
-
-          tokenNameQuery = new Vue({
-              el: '#tokenNameQuery',
-              data: {
-                 queryId: '',
-                 tokenNameResult: ''
-              },
-              methods: {
-                    onSubmit: function (event){
-                      self.queryTokenName( this.queryId )
-                    }
-                }
-            })
-
-
-            tokenOwnerQuery = new Vue({
-                el: '#tokenOwnerQuery',
-                data: {
-                   queryName: '',
-                   ownerResult: '',
-                   ownerURL: ''
-                },
-                methods: {
-                      onSubmit: function (event){
-                        self.queryTokenOwner( this.queryName )
-                      }
-                  }
-              })
-
-
-
-
-
-
-
-                //self.updateRecentNamesList()
-                //self.updatePersonalNamesList()
-
-                //setInterval(function(){ self.updateRecentNamesList()   },24 * 1000)
 
 
 
