@@ -17,7 +17,7 @@ var app;
 var dashboardData;
 
 
-var createInvoiceInput;
+var categoryTabSelector;
 var payInvoiceInput;
 
 
@@ -39,18 +39,11 @@ export default class HomeRenderer {
 
 
 
-      createInvoiceInput = new Vue({
-          el: '#create-invoice-input',
+      categoryTabSelector = new Vue({
+          el: '#category-tabs',
           data: {
-             recipientAddress: '',
-             tokenAddress: '',
-             tokenAmount: '',
-             description: '',
-             refNumber: '',
-             web3connected: false,
-             nametagAvailable: true,
-             predictedUUID: null,
-             predictedInvoiceURL: '/invoice.html?uuid='
+             activeTagIndex: 0,
+             categories: allcategories,
 
 
           },
@@ -64,30 +57,11 @@ export default class HomeRenderer {
 
                 //  self.checkNameAvailability( this.inputName );
                 },
-                onSubmitNewInvoice: async function (event){
-                  console.log('submit new invoice ', this.recipientAddress)
-                  //self.claimName( this.inputName )
-
-
-                  var newInvoiceData = {
-                    recipientAddress: this.recipientAddress,
-                    tokenAddress:this.tokenAddress,
-                    tokenAmount:this.tokenAmount,
-                    description:this.description,
-                    refNumber:this.refNumber,
-                    blockExpiresAt:0
-                  }
-
-
-                  var computedInvoiceUUID = await self.getInvoiceUUID( newInvoiceData , ethereumHelper )
-                  console.log('computedInvoiceUUID',computedInvoiceUUID)
-
-                  await self.createNewInvoice( newInvoiceData )
-
-                  Vue.set(createInvoiceInput, 'predictedUUID', computedInvoiceUUID)
-                  Vue.set(createInvoiceInput, 'predictedInvoiceURL', '/invoice.html?uuid='+computedInvoiceUUID)
+                onSelectTab: async function (event){
+                  console.log('select tab')
+                }
             }
-            }
+
         })
 
 

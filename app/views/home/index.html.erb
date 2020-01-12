@@ -1,3 +1,13 @@
+<script type="text/javascript">
+//load in data from rails db
+  var allcategories = <%= raw ProductCategory.all.to_json  %> ;
+
+  console.log(categories)
+</script>
+
+
+
+
 <div class="hero-head" id="home">
 
   <section class="hero is-primary slate-theme-dark is-medium"  >
@@ -57,12 +67,14 @@
 
    <div class="columns">
 
-        <div class="tabs">
+        <div class="tabs" id="category-tabs" v-cloak>
           <ul>
-            <li class="is-active"><a>Stickers</a></li>
-            <li><a>Shirts</a></li>
-            <li><a>Ties</a></li>
-            <li><a>Trinkets</a></li>
+            
+            <li class="is-active" v-for="item in categories">
+               <a>{{ item.name }}</a>
+             </li>
+
+
           </ul>
         </div>
 
