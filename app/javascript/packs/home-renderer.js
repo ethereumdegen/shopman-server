@@ -49,9 +49,11 @@ export default class HomeRenderer {
           },
           methods: {
 
-                keyUp: function (event) {
-                   //Vue.set(createInvoiceInput, 'showAvailability', false)
+                clickTab: function (event,index) {
+                   console.log(index)
+                   this.activeTagIndex = index;
                 },
+
                 inputChange: function (event) {
                   console.log('input change',  this.inputName, event)
 

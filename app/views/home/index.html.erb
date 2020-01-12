@@ -69,8 +69,8 @@
 
         <div class="tabs" id="category-tabs" v-cloak>
           <ul>
-            
-            <li class="is-active" v-for="item in categories">
+
+            <li  v-for="(item,index) in categories" v-bind:key="item.id"  v-bind:class="{ 'is-active': index==activeTagIndex  }" v-on:click="clickTab($event, index)" >
                <a>{{ item.name }}</a>
              </li>
 
