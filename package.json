@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "server": "./bin/rails server",
+    "test": "bundle exec rspec   " ,
     "mocha": "./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register --require mock-local-storage 'mocha/**/*.js'",
     "sidekiq": "bundle exec sidekiq -C ./config/sidekiq.yml",
     "credentials": "EDITOR=\"nano\" bin/rails credentials:edit"

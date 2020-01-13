@@ -33,6 +33,10 @@ include PayspecBotHelper
       tokenAddress: @currency.eth_contract_address,
       description: ('Etherpunks.com Order')
     }
+
+
+    PayspecBotHelper.setInvoicePaidCallbackURL() #init
+
     @invoiceUUID = PayspecBotHelper.generateOffchainInvoice( payspecData )
 
     p 'got invoice uuid '
@@ -49,6 +53,9 @@ include PayspecBotHelper
 
 
     @order = Order.new(invoice_uuid: @invoiceUUID)
+
+
+    @order.build_order_row()
     #build order rows
     #add shipping info
     @order.save
@@ -65,6 +72,11 @@ include PayspecBotHelper
 
 
   def show
+  end
+
+  def invoiceCallback
+    @order = Order.find_by(invoice_uuid: params[:order_uuid])
+    redirect_to order_url(@order)
   end
 
   def index

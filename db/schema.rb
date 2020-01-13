@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
   end
 
   create_table "currencies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "eth_contract_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,17 +45,17 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
   end
 
   create_table "order_rows", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.integer "quantity"
-    t.integer "price_currency_id"
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity", null: false
+    t.integer "price_currency_id", null: false
     t.integer "price_raw_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.string "invoice_uuid"
     t.integer "order_status"
     t.string "tracking_number"
@@ -64,16 +64,16 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "parent_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "product_category_id"
-    t.integer "seller_id"
+    t.integer "seller_id", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
     t.integer "access_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

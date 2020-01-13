@@ -1,5 +1,5 @@
 
-<div class="container constrained pad-md" id="order-new">
+<div class="container constrained pad-md" id="order-show">
 
 
 
@@ -14,8 +14,10 @@
     <h1>Order#show</h1>
     <p>Find me in app/views/order/show.html.erb</p>
 
-    <!-- this takes you to the payspec page of the matching UUID --> 
-    <div class="button"> Pay For Order  </div>
+    <!-- this takes you to the payspec page of the matching UUID -->
+    <a href="<%= getInvoiceURL %> ">
+      <div class="button" > Pay For Order  </div>
+    </a>
 
   </div>
 </div>

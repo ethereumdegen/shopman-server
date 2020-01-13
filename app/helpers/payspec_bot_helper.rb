@@ -1,26 +1,19 @@
 require 'jsonrpc-client'
+include Rails.application.routes.url_helpers
 
 module PayspecBotHelper
 
 
 
+     def self.setInvoicePaidCallbackURL( )
+       client = JSONRPC::Client.new('http://localhost:7071')
+       @response = client.setInvoicePaidCallbackURL( invoice_callback_url  )
+
+       return @response
+     end
 
 
-  def self.remoteping
 
-
-    begin
-      client = JSONRPC::Client.new('http://localhost:7071')
-      res = client.ping( )
-      p 'response is '
-      p res
-    rescue => ex
-      p 'error: could not connect '
-      p ex
-    end
-
-
-   end
 
 
    def self.generateOffchainInvoice( args )
@@ -44,6 +37,7 @@ module PayspecBotHelper
      return @uuid
 
    end
+
 
 
 end
