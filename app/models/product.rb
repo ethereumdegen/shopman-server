@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 
   validates :est_shipping_days , :presence => true
 
-
+  has_many :order_rows
 
   has_one_attached :thumbnail
 

@@ -14,6 +14,7 @@ import InvoiceRenderer from './invoice-renderer'
 
 import ActiveProductsContainerRenderer from './products/active-product-container-renderer'
 
+import ProductShow from './products/product-show'
 
 
 var url = require('url');
@@ -71,6 +72,9 @@ $(document).ready(function(){
 
         var activeProductsContainerRenderer = new ActiveProductsContainerRenderer();
         activeProductsContainerRenderer.init();
+
+        var productShow = new ProductShow();
+        productShow.init();
 
       }
 

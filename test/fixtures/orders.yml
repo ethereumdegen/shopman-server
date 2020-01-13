@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  invoice_uuid: MyString
+  order_status: 1
+  tracking_number: MyString
+
+two:
+  user_id: 1
+  invoice_uuid: MyString
+  order_status: 1
+  tracking_number: MyString

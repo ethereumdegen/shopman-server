@@ -3,11 +3,12 @@
   "private": true,
   "scripts": {
     "server": "./bin/rails server",
-
+    "mocha": "./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register 'mocha/**/*.js'",
     "sidekiq": "bundle exec sidekiq -C ./config/sidekiq.yml",
     "credentials": "EDITOR=\"nano\" bin/rails credentials:edit"
   },
   "dependencies": {
+    "@babel/register": "^7.8.0",
     "@rails/webpacker": "4.2.2",
     "eth-url-parser": "^1.0.3",
     "jquery": "^3.4.1",
@@ -24,9 +25,11 @@
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.8.0",
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-es2016": "^7.0.0-beta.53",
+    "@babel/runtime": "^7.8.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
@@ -34,7 +37,7 @@
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-tags-plugin": "^2.0.17",
     "mini-css-extract-plugin": "^0.9.0",
-    "mocha": "^5.0.4",
+    "mocha": "^5.2.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.10.1"
