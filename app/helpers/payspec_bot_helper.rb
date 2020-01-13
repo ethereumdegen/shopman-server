@@ -38,8 +38,8 @@ module PayspecBotHelper
        p ex
      end
 
-     @uuid = @response[:uuid]
-
+     @uuid = @response["uuid"].to_s
+     p 'lallaa '+@uuid
 
      return @uuid
 

@@ -153,6 +153,15 @@ export default class OrderNew {
           },
           success: function(data) {
             console.log('got ajax response', data )
+
+            if(data.success){
+               window.location.href = data.redirect_url
+            }else{
+              //throw alert, alert helper?
+              console.error(data.message)
+            }
+
+
             resolve( data)
           },
           error: function(error) {

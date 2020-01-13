@@ -22,9 +22,6 @@ include PayspecBotHelper
 
     #{"cart"=>{"0"=>{"product_id"=>"1", "quantity"=>"2"}}, "shipping"=>{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}}
 
-    @order = Order.new
-
-    @order.save
 
 
 
@@ -34,9 +31,12 @@ include PayspecBotHelper
     payspecData = {
       tokenAmount: 0,  #calc this from subtotal
       tokenAddress: @currency.eth_contract_address,
-      description: ('Etherpunks.com Order #'+@order.id.to_s)
+      description: ('Etherpunks.com Order')
     }
     @invoiceUUID = PayspecBotHelper.generateOffchainInvoice( payspecData )
+
+    p 'got invoice uuid '
+    p @invoiceUUID
 
     if(@invoiceUUID == nil)
       respond_to do |format|
@@ -48,16 +48,19 @@ include PayspecBotHelper
 
 
 
-
-   #need to get the invoice UUID from the bot here
-
-   #need to redirect the customer to the URL for the invoice (bot)
-
-
+    @order = Order.new(invoice_uuid: @invoiceUUID)
+    #build order rows
+    #add shipping info
+    @order.save
 
 
 
-    redirect_to @order
+    respond_to do |format|
+      format.js { render json: {success:true, redirect_url: order_show_url(@order) }.to_json }
+      format.html
+    end
+
+  #  redirect_to order_show_url(@order)
   end
 
 

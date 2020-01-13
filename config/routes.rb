@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 #  get 'order/new'
-#  get 'order/show'
+
 #  get 'order/index'
 
 #  get 'user/show'
@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   #get 'product/new'
   resources :user
   resources :product
-  resources :order
+
+
+    get 'order/show'
+    get 'order/new'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   post '/order/create' => 'order#create'
