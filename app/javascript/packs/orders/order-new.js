@@ -28,7 +28,10 @@ export default class OrderNew {
       console.log('cart is ',cart, cart.length)
 
       //need to hit rails w an ajax call
-      var shoppingListData = cart;
+      var shoppingListData = await this.getShoppingListDataFromCart(cart);
+
+      console.log('shopping list is ', shoppingListData )
+
 
 
       shoppingList = new Vue({
@@ -50,6 +53,33 @@ export default class OrderNew {
             }
 
         })
+    }
+
+    async getShoppingListDataFromCart(cart)
+    {
+
+
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url: '/order/getshoppinglistdata',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            "cart": cart,
+          },
+          success: function(data) {
+            console.log('got ajax response', data )
+           
+            resolve( data.shoppingList )
+          },
+          error: function(error) {
+            reject(error)
+          },
+        })
+      })
+
+
     }
 
 

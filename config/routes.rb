@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :order
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  post '/order/getshoppinglistdata' => 'order#getShoppingListData'
 
-
-    root 'home#index'
+  root 'home#index'
 
 end
