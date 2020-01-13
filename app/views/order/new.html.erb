@@ -1,0 +1,70 @@
+<script type="text/javascript">
+//load in data from rails db
+
+</script>
+
+
+<div class="container constrained pad-md" id="order-new">
+
+
+
+  <div class="columns">
+
+
+    <div class="column is-two-thirds">
+      <h1 class="title"> Shopping Cart </h1>
+
+      <div class="container">
+
+        <div id="shopping-list">
+
+
+
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th><abbr title="Product Name">Product Name</abbr></th>
+                <th>Quantity</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr   v-for="item in shoppingRows" >
+
+
+                  <th> {{item.product_id}} </th>
+                  <td>  {{item.quantity}} </td>
+
+              </tr>
+
+
+
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="column is-one-third">
+     ----
+    </div>
+
+  </div>
+
+
+
+
+</div>

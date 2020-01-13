@@ -15,6 +15,7 @@ import InvoiceRenderer from './invoice-renderer'
 import ActiveProductsContainerRenderer from './products/active-product-container-renderer'
 
 import ProductShow from './products/product-show'
+import OrderNew from './orders/order-new'
 
 
 var url = require('url');
@@ -75,6 +76,14 @@ $(document).ready(function(){
 
         var productShow = new ProductShow();
         productShow.init();
+
+      }
+
+      if($("#order-new").length > 0){
+
+
+        var orderNew = new OrderNew();
+        orderNew.init();
 
       }
 

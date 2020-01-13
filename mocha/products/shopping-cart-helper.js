@@ -17,6 +17,9 @@ describe('Array', function() {
 
         assert.equal(  JSON.stringify(cart) , JSON.stringify(expected)   );
 
+
+
+
         var cart = shoppingCartHelper.addItemToCart(1,1)
 
         var expected = [ { product_id: 1, quantity: 2 } ]

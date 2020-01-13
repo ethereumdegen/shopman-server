@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'order/new'
+  get 'order/show'
+  get 'order/index'
   get 'orders/index'
   get 'orders/show'
   get 'orders/new'
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
   #get 'product/new'
   resources :user
   resources :product
+  resources :order
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
