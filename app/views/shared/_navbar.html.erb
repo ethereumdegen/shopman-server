@@ -1,77 +1,48 @@
-<div class="hero-head">
-  <nav class="navbar <%= yield :navbar_style %> ">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item brand-text" href="/">
-          <!-- <img src="../images/bulma.png" alt="Logo"> -->
-          <%= Rails.configuration.APPNAME %>
-        </a>
 
+<div class="hero-head ">
+  <nav class="navbar <%= yield :navbar_style %>">
+        <div class="container">
+ <div class="navbar-brand">
+   <a class="navbar-item" href="#">
+       <%= Rails.configuration.APPNAME %>
+   </a>
+   <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+     <span></span>
+     <span></span>
+     <span></span>
+   </div>
+ </div>
 
-        <span id="navbarButton" class="navbar-burger burger" data-target="navbarMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-
-
-      </div>
-
-
-      <div id="navbarMenu" class="navbar-menu">
-
-      <div class="navbar-center has-text-centered justify-content-center">
-
-      <% if user_signed_in? %>
-
-      <div class="navbar-nav justify-content-center" style="padding-top:20px">
-
-        <a class="navbar-item" href=" ">
-           <%= current_user.email %>
-        </a>
-
-
-          <a class="navbar-item" href="admin.html">
-               Home
-          </a>
-
-          <a class="navbar-item" href="admin.html">
-            Orders
-          </a>
-
-          <a class="navbar-item" href="admin.html">
-            Payments
-          </a>
-
-      </div>
-
-        <% else %>
-
-        <% end %>
-
-        </div>
-
-
-
-
-        <div class="navbar-end">
-
-          <% if user_signed_in? %>
-
-
-                <%= link_to('Logout', destroy_user_session_path, class:'navbar-item') %>
-
-            <% else %>
-
-                  <%= link_to('Login', new_user_session_path, class:'navbar-item')  %>
-
-            <% end %>
-
-
-          <!-- <div class="tabs is-right"> <ul> <li class="is-active"><a>Home</a></li> <li><a href="">Examples</a></li> <li><a href="">Features</a></li> <li><a href="">Team</a></li> <li><a href="">Help</a></li> </ul> </div> -->
-
-        </div>
-      </div>
-    </div>
-  </nav>
+ <div id="navbarExampleTransparentExample" class="navbar-menu has-text-grey-lighter	">
+   <div class="navbar-end">
+     <a class="navbar-item" href="#">
+       Home
+     </a>
+     <div class="navbar-item has-dropdown is-hoverable">
+       <a class="navbar-link" href="#">
+         DROPDOWN
+       </a>
+       <div class="navbar-dropdown is-boxed">
+         <a class="navbar-item" href="#">
+           ITEM 1
+         </a>
+         <a class="navbar-item" href="#">
+           ITEM 2
+         </a>
+         <a class="navbar-item" href="#">
+           ITEM 3
+         </a>
+         <hr class="navbar-divider">
+         <a class="navbar-item" href="#">
+           ITEM 4
+         </a>
+         <a class="navbar-item is-active" href="#">
+           ITEM 5
+         </a>
+       </div>
+     </div>
+   </div>
+ </div>
+  </div>
+</nav>
 </div>
