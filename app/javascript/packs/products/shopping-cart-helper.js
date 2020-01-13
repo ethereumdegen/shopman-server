@@ -20,9 +20,8 @@ export default class ShoppingCartHelper {
           this.addQuantityToItemInCart(existingIndex, quantity)
         }
 
+        return this.getCurrentShoppingCart();
 
-
-        console.log('updated shopping cart', JSON.stringify(this.getCurrentShoppingCart()) )
     }
 
     getIndexOfItemInCart(productId)

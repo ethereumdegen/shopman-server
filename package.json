@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "server": "./bin/rails server",
-    "mocha": "./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register 'mocha/**/*.js'",
+    "mocha": "./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register --require mock-local-storage 'mocha/**/*.js'",
     "sidekiq": "bundle exec sidekiq -C ./config/sidekiq.yml",
     "credentials": "EDITOR=\"nano\" bin/rails credentials:edit"
   },
@@ -38,6 +38,7 @@
     "html-webpack-tags-plugin": "^2.0.17",
     "mini-css-extract-plugin": "^0.9.0",
     "mocha": "^5.2.0",
+    "mock-local-storage": "^1.1.11",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.10.1"
