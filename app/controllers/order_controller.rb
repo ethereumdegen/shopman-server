@@ -5,6 +5,7 @@ class OrderController < ApplicationController
 
 include OrderHelper
 include CurrencyHelper
+include PayspecBotHelper
 
   def new
 
@@ -24,6 +25,35 @@ include CurrencyHelper
     @order = Order.new
 
     @order.save
+
+
+
+    @currency = Currency.all.first
+
+#the payspec server will automatically fill in the recipient address and the refNumber(increments)
+    payspecData = {
+      tokenAmount: 0,  #calc this from subtotal
+      tokenAddress: @currency.eth_contract_address,
+      description: ('Etherpunks.com Order #'+@order.id.to_s)
+    }
+    @invoiceUUID = PayspecBotHelper.generateOffchainInvoice( payspecData )
+
+    if(@invoiceUUID == nil)
+      respond_to do |format|
+        format.js { render json: {success:false, message: 'Server Error: Could not generate Payspec Invoice' }.to_json }
+        format.html
+      end
+      return
+    end
+
+
+
+
+   #need to get the invoice UUID from the bot here
+
+   #need to redirect the customer to the URL for the invoice (bot)
+
+
 
 
 

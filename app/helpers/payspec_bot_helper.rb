@@ -6,7 +6,7 @@ module PayspecBotHelper
 
 
 
-  def remoteping
+  def self.remoteping
 
 
     begin
@@ -19,6 +19,29 @@ module PayspecBotHelper
       p ex
     end
 
+
+   end
+
+
+   def self.generateOffchainInvoice( args )
+
+     @uuid = nil
+
+
+     begin
+       client = JSONRPC::Client.new('http://localhost:7071')
+       @response = client.generateOffchainInvoice( args  )
+       p 'response is '
+       p @response
+     rescue => ex
+       p 'error: could not connect '
+       p ex
+     end
+
+     @uuid = @response[:uuid]
+
+
+     return @uuid
 
    end
 

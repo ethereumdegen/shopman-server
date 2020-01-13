@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
 
 def index
-  PayspecBotHelper.remoteping
+  
 
   #Product.all.to_json
 
