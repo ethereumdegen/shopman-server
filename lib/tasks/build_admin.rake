@@ -14,10 +14,13 @@ namespace :db do
     @newpass = SecureRandom.hex
 
     @existinguser = User.find_by(email: @emailaddress)
-    @existinguser.destroy
 
+    if @existinguser
+        @existinguser.destroy
+    end
 
-    @user = User.new(:email => @emailaddress,
+    @user = User.new(:name => 'admin',
+    :email => @emailaddress,
     :password => @newpass,
     :password_confirmation => @newpass    )
 

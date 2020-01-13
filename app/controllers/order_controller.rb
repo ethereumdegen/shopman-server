@@ -12,6 +12,25 @@ include CurrencyHelper
     @currency = Currency.all.first
   end
 
+  def create
+
+    parameters = orderCreationParams.to_h
+
+    p 'params '
+    p parameters.to_s
+
+    #{"cart"=>{"0"=>{"product_id"=>"1", "quantity"=>"2"}}, "shipping"=>{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}}
+
+    @order = Order.new
+
+    @order.save
+
+
+
+    redirect_to @order
+  end
+
+
   def show
   end
 
@@ -90,6 +109,11 @@ include CurrencyHelper
 private
     def shoppingCartParams
       params.permit(cart: [:product_id,:quantity])
+    end
+
+
+    def orderCreationParams
+      params.permit(cart: [:product_id,:quantity],  shipping: [:name, :streetAddress, :stateCode, :zipCode, :countryCode ] )
     end
 
 

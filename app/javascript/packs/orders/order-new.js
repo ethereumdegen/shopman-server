@@ -76,7 +76,8 @@ export default class OrderNew {
               name: '',
               streetAddress: '',
               stateCode: '',
-              zipCode: ''
+              zipCode: '',
+              countryCode: 'US'
               // shoppingRows: shoppingListData
 
             },
@@ -87,6 +88,9 @@ export default class OrderNew {
                   },
                   onQuantityChange: function( event, index){
                       console.log('quantity change ' )  //like input change
+                  },
+                  submitOrder: function(event){
+                    self.submitOrderCreate()
                   }
 
 
@@ -111,6 +115,44 @@ export default class OrderNew {
           success: function(data) {
             console.log('got ajax response', data )
 
+            resolve( data)
+          },
+          error: function(error) {
+            reject(error)
+          },
+        })
+      })
+
+
+    }
+
+
+    async submitOrderCreate()
+    {
+      var cart = shoppingCartHelper.getCurrentShoppingCart()
+
+      var shipping = {
+        name: shippingInformation.name,
+        streetAddress: shippingInformation.streetAddress,
+        stateCode: shippingInformation.stateCode,
+        countryCode: shippingInformation.countryCode,
+        zipCode: shippingInformation.zipCode
+      }
+
+      console.log('meep',shipping)
+
+      var response = new Promise((resolve, reject) => {
+        $.ajax({
+          url: '/order/create',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            "cart": cart,
+            "shipping": shipping
+          },
+          success: function(data) {
+            console.log('got ajax response', data )
             resolve( data)
           },
           error: function(error) {

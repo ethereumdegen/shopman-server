@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  get 'order/new'
-  get 'order/show'
-  get 'order/index'
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  get 'user/show'
+
+
+#  get 'order/new'
+#  get 'order/show'
+#  get 'order/index'
+
+#  get 'user/show'
+
+
   devise_for :users
 
   resources :user_session
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   resources :order
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  post '/order/create' => 'order#create'
   post '/order/getshoppinglistdata' => 'order#getShoppingListData'
 
   root 'home#index'
