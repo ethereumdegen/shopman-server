@@ -1,6 +1,7 @@
 <script type="text/javascript">
 //load in data from rails db
 
+    var currency = <%= raw @currency.getExportData.to_json %>
 </script>
 
 
@@ -26,6 +27,7 @@
               <tr>
                 <th><abbr title="Product Name">Product Name</abbr></th>
                 <th>Quantity</th>
+                <th>Price</th>
 
               </tr>
             </thead>
@@ -35,8 +37,17 @@
               <tr   v-for="item in shoppingRows" >
 
 
-                  <th> {{item.product_id}} </th>
+
+                  <th> {{item.product.name}} </th>
                   <td>  {{item.quantity}} </td>
+                  <td>
+                      <div class="content-row   ">
+                        <div class="subtitle is-8 overflow-ellipsis">
+                             <div style="display:inline-block; text-align:top; ">  <img v-bind:src="currency.thumbnailURL" height="16px" width="16px"></img> </div>
+                             <div style="display:inline-block; text-align:top; ">  {{item.product.price_data.price_formatted}} </div>
+                        </div>
+                    </div>
+                 </td>
 
               </tr>
 
@@ -44,7 +55,23 @@
             </tbody>
           </table>
 
+          <div>
+            <div class="   ">
+              <div class="subtitle is-8 overflow-ellipsis">
+                  Subtotal:
+                   <div style="display:inline-block; text-align:top; ">  <img v-bind:src="currency.thumbnailURL" height="16px" width="16px"></img> </div>
+                   <div style="display:inline-block; text-align:top; ">   {{subtotalFormatted}} </div>
+              </div>
+          </div>
 
+          </div>
+
+          <div class="whitespace-lg"></div>
+          <div class="pad-sm">
+            <div class="control">
+              <div class="button" v-on:click="resetCart">Clear Shopping Cart</div>
+            </div>
+          </div>
 
 
 
@@ -70,21 +97,21 @@
          <div class="panel-block">
            <div class="control">
              <span class="label">Name</span>
-             <input class="input"></input>
+             <input class="input" v-bind:value="name"></input>
            </div>
          </div>
 
          <div class="panel-block">
            <div class="control">
              <span class="label">Street Address / PO Box</span>
-             <input class="input"></input>
+             <input class="input" v-bind:value="streetAddress"></input>
            </div>
          </div>
 
          <div class="panel-block">
            <div class="control">
-             <span class="label">State</span>
-             <input class="input"></input>
+             <span class="label">State Code</span>
+             <input class="input" v-bind:value="stateCode"></input>
            </div>
          </div>
 
@@ -98,7 +125,7 @@
          <div class="panel-block">
            <div class="control">
              <span class="label">Zip Code</span>
-             <input class="input"></input>
+             <input class="input" v-bind:value="zipCode"></input>
            </div>
          </div>
 

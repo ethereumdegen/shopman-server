@@ -1,5 +1,15 @@
+require 'json'
+
+
 class OrderController < ApplicationController
+
+include OrderHelper
+include CurrencyHelper
+
   def new
+
+    ##override the currency for now, built out full multi coin support later
+    @currency = Currency.all.first
   end
 
   def show
@@ -12,18 +22,74 @@ class OrderController < ApplicationController
     def getShoppingListData
       p 'get shopping list data '
 
-      cart = params[:cart]
+      parameters = shoppingCartParams.to_h
 
-      p cart
+      p parameters
+      cart = parameters[:cart].to_a
 
-       @list = cart
+      @currency = nil
+
+      @list = []
+      @subtotalRaw = 0;
+      @subtotalFormatted = 0;
+
+      if cart.length == 0
+        respond_to do |format|
+          format.js { render json: {success:true, shoppingList:  @list, currency: Currency.all.first.getExportData, subtotalRaw: @subtotalRaw, subtotalFormatted: @subtotalFormatted , currency: @currency}.to_json }
+          format.html
+        end
+        return
+      end
+
+
+      if OrderHelper.cartItemsHaveDifferentCurrencies?(cart)
+        respond_to do |format|
+          format.js { render json: {success:false, message: 'Cart items use different currencies' }.to_json }
+          format.html
+        end
+        return
+      end
+
+
+
+
+    #  p cart.to_s
+
+       cart.each do |row|
+         p 'item is '
+         item = row[1]
+         item_id = item[:product_id].to_i
+
+         @quantity = item[:quantity].to_i
+         @product = Product.find_by_id(item_id)
+         @currency = @product.price_currency
+         @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
+         @list << {product_id: @product.id, product: @product.getExportData, quantity: @quantity }
+       end
+
+       p @list
+
+       @subtotalFormatted = CurrencyHelper.getPriceFormatted({currency: @currency, raw_units: @subtotalRaw})
 
       respond_to do |format|
-        format.js { render json: {success:true, shoppingList:   @list }.to_json }
+        format.js { render json: {success:true, shoppingList:  @list, currency: @currency.getExportData, subtotalRaw: @subtotalRaw, subtotalFormatted: @subtotalFormatted , currency: @currency}.to_json }
         format.html
       end
 
 
+    end
+
+
+
+
+
+
+
+
+
+private
+    def shoppingCartParams
+      params.permit(cart: [:product_id,:quantity])
     end
 
 

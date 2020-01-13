@@ -8,6 +8,7 @@ import ShoppingCartHelper from './shopping-cart-helper'
 var shoppingCartHelper = new ShoppingCartHelper();
 
 var shoppingList;
+var shippingInformation;
 
 export default class OrderNew {
 
@@ -23,21 +24,27 @@ export default class OrderNew {
 
     async renderShoppingList()
     {
+      var self = this ;
       var cart = shoppingCartHelper.getCurrentShoppingCart()
 
       console.log('cart is ',cart, cart.length)
 
       //need to hit rails w an ajax call
-      var shoppingListData = await this.getShoppingListDataFromCart(cart);
+      var cart = await this.getShoppingListDataFromCart(cart);
 
+      var shoppingListData = cart.shoppingList
       console.log('shopping list is ', shoppingListData )
 
 
+      var subtotalRaw = cart.subtotalRaw;
+      var subtotalFormatted = cart.subtotalFormatted;
 
       shoppingList = new Vue({
           el: '#shopping-list',
           data: {
-             shoppingRows: shoppingListData
+             shoppingRows: shoppingListData,
+             subtotalFormatted: subtotalFormatted,
+             currency:currency
 
           },
           methods: {
@@ -47,12 +54,45 @@ export default class OrderNew {
                 },
                 onQuantityChange: function( event, index){
                     console.log('quantity change ' )  //like input change
-                }
+                },
+                resetCart: function(event){
+                  console.log('reset cart ')
+                  shoppingCartHelper.clearShoppingCart(),
+                  // self.renderShoppingList()
+                   Vue.set(shoppingList, 'shoppingRows', [])
+                   Vue.set(shoppingList, 'subtotalFormatted', 0)
 
+                }
 
             }
 
         })
+
+
+
+        shippingInformation = new Vue({
+            el: '#shipping-info',
+            data: {
+              name: '',
+              streetAddress: '',
+              stateCode: '',
+              zipCode: ''
+              // shoppingRows: shoppingListData
+
+            },
+            methods: {
+
+                  deleteRow: function (event,index) {
+                      console.log('delete row',index)
+                  },
+                  onQuantityChange: function( event, index){
+                      console.log('quantity change ' )  //like input change
+                  }
+
+
+              }
+
+          })
     }
 
     async getShoppingListDataFromCart(cart)
@@ -70,8 +110,8 @@ export default class OrderNew {
           },
           success: function(data) {
             console.log('got ajax response', data )
-           
-            resolve( data.shoppingList )
+
+            resolve( data)
           },
           error: function(error) {
             reject(error)
