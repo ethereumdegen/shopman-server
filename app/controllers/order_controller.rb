@@ -45,15 +45,32 @@ include PayspecBotHelper
       return
     end
 
+      @order = Order.new( )
 
     @currency = Currency.all.first
     @subtotalRaw = 0
 
+
+    # calc subtotal first
+    @cart.each do |row|
+      index = row[0]
+      item = row[1]
+      item_id = item[:product_id].to_i
+
+      @quantity = item[:quantity].to_i
+      @product = Product.find_by_id(item_id)
+      @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
+      @order.order_rows.build(product_id: @product.id, quantity: @quantity, price_currency_id: @product.price_currency_id, price_raw_units: @product.price_raw_units )
+
+    end
+
+
+
 #the payspec server will automatically fill in the recipient address and the refNumber(increments)
     payspecData = {
-      tokenAmount: 0,  #calc this from subtotal
+      amountDue: @subtotalRaw,  #calc this from subtotal
       tokenAddress: @currency.eth_contract_address,
-      description: ('Etherpunks.com Order')
+      description: (Rails.configuration.APPNAME+' Order')
     }
 
 
@@ -74,21 +91,10 @@ include PayspecBotHelper
 
 
 
-    @order = Order.new(invoice_uuid: @invoiceUUID)
 
-    @cart.each do |row|
-      p 'item is '
-      index = row[0]
-      item = row[1]
-      item_id = item[:product_id].to_i
 
-      @quantity = item[:quantity].to_i
-      @product = Product.find_by_id(item_id)
-      @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
+    @order.invoice_uuid = @invoiceUUID
 
-      @order.order_rows.build(product_id: @product.id, quantity: @quantity, price_currency_id: @product.price_currency_id, price_raw_units: @product.price_raw_units )
-
-    end
 
 
       #add subtotal
@@ -103,7 +109,7 @@ include PayspecBotHelper
     #add shipping info
     p 'ship info'
     p @ship_info
-    @order.shipping_infos.build(ship_to_name: @ship_info[:name],streetAddress: @ship_info[:streetAddress] ,stateCode: @ship_info[:stateCode] ,zipCode: @ship_info[:zipCode],countryCode: @ship_info[:countryCode])
+    @order.build_shipping_info(ship_to_name: @ship_info[:name],streetAddress: @ship_info[:streetAddress] ,stateCode: @ship_info[:stateCode] ,zipCode: @ship_info[:zipCode],countryCode: @ship_info[:countryCode])
 
 
     @order.setOrderStatus(Order::order_statuses[:started])
