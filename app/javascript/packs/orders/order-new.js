@@ -139,7 +139,9 @@ export default class OrderNew {
         zipCode: shippingInformation.zipCode
       }
 
-      console.log('meep',shipping)
+        shoppingCartHelper.clearShoppingCart()
+
+     //  console.log('meep',shipping)
 
       var response = new Promise((resolve, reject) => {
         $.ajax({

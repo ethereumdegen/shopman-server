@@ -92,9 +92,12 @@ include PayspecBotHelper
 
 
       #add subtotal
-    @order.price_currency_id=  @currency.id
-    @order.price_raw_units = @subtotalRaw
+    @order.subtotal_currency =  @currency
+    @order.subtotal_raw_units = @subtotalRaw
 
+    if(current_user)
+      @order.user = current_user
+    end
 
 
     #add shipping info

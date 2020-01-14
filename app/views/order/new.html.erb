@@ -25,7 +25,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th><abbr title="Product Name">Product Name</abbr></th>
+                <th><abbr title="Product Name">Product Name</abbr>  </th>
                 <th>Quantity</th>
                 <th>Price</th>
 
@@ -38,7 +38,7 @@
 
 
 
-                  <th> {{item.product.name}} </th>
+                  <th><a v-bind:href="item.product.url" > {{item.product.name}} </a></th>
                   <td>  {{item.quantity}} </td>
                   <td>
                       <div class="content-row   ">

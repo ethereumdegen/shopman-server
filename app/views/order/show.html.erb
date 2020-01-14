@@ -1,4 +1,4 @@
-
+ 
 <div class="container constrained pad-md" id="order-show">
 
 
@@ -7,18 +7,132 @@
 
 
     <div class="column is-two-thirds">
-      <h1 class="title"> Shopping Cart </h1>
+      <h1 class="title"> Order #<%= @order.id%>  </h1>
 
-    <%= @order %>
 
-    <h1>Order#show</h1>
-    <p>Find me in app/views/order/show.html.erb</p>
 
-    <!-- this takes you to the payspec page of the matching UUID   -->
-    <a href="<%= @order.getInvoiceURL %> ">
-      <div class="button" > Pay For Order  </div>
-    </a>
+
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><abbr title="Product Name">Product Name</abbr></th>
+          <th>Quantity</th>
+          <th>Est. Ship Days</th>
+          <th>Price</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <% @order.order_rows.each do |row| %>
+
+        <tr >
+            <th> <a href="<%= url_for row.product %>"> <%= row.product.name %> </a> </th>
+            <td> <%= row.product.est_shipping_days %> </td>
+            <td> <%= row.quantity %> </td>
+            <td>
+                <div class="content-row   ">
+                  <div class="subtitle is-8 overflow-ellipsis">
+                       <div style="display:inline-block; text-align:top; ">  <img  src="<%= row.price_currency.getThumbnailURL %> " height="16px" width="16px"></img> </div>
+                       <div style="display:inline-block; text-align:top; "> <%= row.product.getPriceData[:price_formatted] %>   </div>
+                  </div>
+              </div>
+           </td>
+
+        </tr>
+        <% end %>
+
+
+      </tbody>
+    </table>
+
+
+    <div>
+      <div class="   ">
+        <div class="subtitle is-8 overflow-ellipsis">
+            Subtotal:
+             <div style="display:inline-block; text-align:top; ">  <img  src="<%= @order.subtotal_currency.getThumbnailURL%>" height="16px" width="16px"></img> </div>
+             <div style="display:inline-block; text-align:top; ">  <%= @order.getSubtotalData[:subtotal_formatted] %>    </div>
+        </div>
+    </div>
+
+    </div>
+
+
 
   </div>
-</div>
+
+
+    <div class="column is-one-third">
+
+      <article class="panel is-primary" id="shipping-info">
+         <p class="panel-heading">
+           Shipping Information
+         </p>
+
+         <div class="panel-block">
+           <div class="control">
+             <span class="label">Ship To Name</span>
+              <%= @order.shipping_info.ship_to_name %>
+           </div>
+         </div>
+
+         <div class="panel-block">
+           <div class="control">
+             <span class="label">Street Address / PO Box</span>
+              <%= @order.shipping_info.streetAddress %>
+           </div>
+         </div>
+
+         <div class="panel-block">
+           <div class="control">
+             <span class="label">State Code</span>
+              <%= @order.shipping_info.stateCode %>
+           </div>
+         </div>
+
+        <div class="panel-block">
+          <div class="control">
+            <span class="label">Country</span>
+             <%= @order.shipping_info.countryCode %>
+          </div>
+        </div>
+
+        <div class="panel-block">
+          <div class="control">
+            <span class="label">Zip Code</span>
+             <%= @order.shipping_info.zipCode %>
+          </div>
+        </div>
+
+
+       </article>
+    </div>
+
+</div><!-- columns -->
+
+  <div>
+
+
+
+    <div class="whitespace-md"></div>
+
+        <!-- this takes you to the payspec page of the matching UUID   -->
+        <a href="<%= @order.getInvoiceURL %> " target="_blank">
+          <div class="button is-success" > Pay For Order  </div>
+        </a>
+
+        <div class="whitespace-md"></div>
+        <div style="display:none">
+       Invoice UUID:  <%= @order.invoice_uuid %>
+      </div>
+
+
+  </div>
+
+
+
 </div>

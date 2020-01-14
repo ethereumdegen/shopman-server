@@ -5,9 +5,7 @@ class Product < ApplicationRecord
 
 
   validates :seller_id , :presence => true
-
   validates :price_currency_id , :presence => true
-
   validates :est_shipping_days , :presence => true
 
   has_many :order_rows

@@ -6,8 +6,8 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.integer :order_status
       t.string :tracking_number
 
-      t.integer :price_currency_id, :null => false
-      t.integer :price_raw_units, :null => false, limit: 8
+      t.integer :subtotal_currency_id, :null => false
+      t.integer :subtotal_raw_units, :null => false, limit: 8
 
 
 
