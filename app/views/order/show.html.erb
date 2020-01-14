@@ -15,7 +15,7 @@
     <p>Find me in app/views/order/show.html.erb</p>
 
     <!-- this takes you to the payspec page of the matching UUID -->
-    <a href="<%= getInvoiceURL %> ">
+    <a href="<%= @order.getInvoiceURL %> ">
       <div class="button" > Pay For Order  </div>
     </a>
 

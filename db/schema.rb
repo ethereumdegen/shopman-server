@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.string "invoice_uuid"
     t.integer "order_status"
     t.string "tracking_number"

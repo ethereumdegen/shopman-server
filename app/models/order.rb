@@ -2,7 +2,7 @@ class Order < ApplicationRecord
 
   has_many :order_rows
 
-  belongs_to :user
+  #belongs_to :user
 
   enum order_status: {
    started: 0,
@@ -13,6 +13,20 @@ class Order < ApplicationRecord
 
 
 
+    def setOrderStatus(sts)
+      self.update_attributes({order_status: sts})
+      self.save!
+    end
+
+     def getOrderStatus
+
+       return Order.order_statuses[self.order_status]
+
+     end
+
+     def hasOrderStatus?(sts)
+       return (getOrderStatus >= sts)
+     end
 
  def getInvoiceURL
    return Rails.configuration.PAYSPEC_SERVER_URL + '/invoice/' + self.invoice_uuid

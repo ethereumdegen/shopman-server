@@ -5,11 +5,12 @@ module OrderHelper
     @currency = nil
 
     cart.each do |row|
-      p 'item is '
-      item = row[1]
+      p 'row is '
+       p row
+      item = row
       item_id = item[:product_id].to_i
 
-      @product = Product.find_by_id(item_id)
+       @product = Product.find_by_id(item_id)
 
         if @currency == nil || @product.price_currency == @currency then
           @currency = @product.price_currency
