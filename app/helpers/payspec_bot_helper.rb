@@ -1,5 +1,4 @@
 require 'jsonrpc-client'
-include Rails.application.routes.url_helpers
 
 module PayspecBotHelper
 
@@ -9,14 +8,14 @@ module PayspecBotHelper
 
       begin
        client = JSONRPC::Client.new('http://localhost:7071')
-       @response = client.setInvoicePaidCallbackURL( {url: invoice_callback_url}  )
+       @response = client.setInvoicePaidCallbackURL( {url: Rails.application.routes.url_helpers.invoice_callback_url}  )
        p 'response is '
        p @response
      rescue => ex
        p 'error: could not connect '
        p ex
      end
-     
+
        return @response
      end
 
