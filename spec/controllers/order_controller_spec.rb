@@ -33,12 +33,12 @@ require 'rails_helper'
           p Currency.all.first
 
 
-          cart =  ( {cart: [{product_id:@item.id, quantity:2}], shipping:{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}})
+
+          cart =  ( {cart: {"0"=>{product_id:@item.id, quantity:2}}, shipping:{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}})
 
 
         post "create", params: (cart)
-
-        p Order.all.last 
+ 
 
         expect(response).to be_truthy
       #  follow_redirect!

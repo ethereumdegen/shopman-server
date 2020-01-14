@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_232849) do
+ActiveRecord::Schema.define(version: 2020_01_14_031913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
   end
 
   create_table "currencies", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "eth_contract_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,27 +59,41 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
     t.string "invoice_uuid"
     t.integer "order_status"
     t.string "tracking_number"
+    t.integer "price_currency_id", null: false
+    t.integer "price_raw_units", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.integer "parent_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.integer "product_category_id"
-    t.integer "seller_id", null: false
+    t.integer "seller_id"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_currency_id"
     t.integer "price_raw_units"
     t.integer "est_shipping_days"
+  end
+
+  create_table "shipping_infos", force: :cascade do |t|
+    t.integer "shippable_id", null: false
+    t.string "shippable_type", null: false
+    t.string "ship_to_name", null: false
+    t.string "streetAddress", null: false
+    t.string "stateCode", null: false
+    t.string "zipCode", null: false
+    t.string "countryCode", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_232849) do
     t.integer "access_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

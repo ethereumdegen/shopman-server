@@ -7,7 +7,9 @@ module OrderHelper
     cart.each do |row|
       p 'row is '
        p row
-      item = row
+       index = row[0]
+       item = row[1]
+        
       item_id = item[:product_id].to_i
 
        @product = Product.find_by_id(item_id)

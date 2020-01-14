@@ -73,7 +73,9 @@ export default class ShoppingCartHelper {
         cart = [];
       }
 
-      return cart;
+     
+      console.log('values', cart )
+      return Array.from(cart);//different array format with no keys
 
     }
 

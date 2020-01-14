@@ -2,6 +2,8 @@ class Order < ApplicationRecord
 
   has_many :order_rows
 
+  has_many :shipping_infos, as: :shippable
+
   #belongs_to :user
 
   enum order_status: {
