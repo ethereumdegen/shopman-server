@@ -9,7 +9,10 @@ require 'rails_helper'
      context "with valid attributes" do
 
        p 'test spec '
-      # company = FactoryBot.create(:company)
+
+
+       #currency = FactoryBot.create(:currency)
+       #product = FactoryBot.create(:product)
 
       let(:current_user) {FactoryBot.create(:user )}
 
@@ -18,7 +21,19 @@ require 'rails_helper'
 
       it "creates a deal" do
 
-        expect(2 ).to eq( 1 )
+        @token = Currency.create(name:"0xBTC", decimals:8,eth_contract_address:"0xb6ed7644c69416d67b522e20bc294a9a9b405b31" )
+        @token.save!
+
+          p Currency.all.first
+
+        post "create", params: {cart: {product_id:1, quantity:2}, shipping:{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}}
+
+
+
+        expect(response).to equal(" hi ")
+        follow_redirect!
+
+        #expect(2 ).to eq( 1 )
       end
 
     end

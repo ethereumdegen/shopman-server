@@ -6,9 +6,17 @@ module PayspecBotHelper
 
 
      def self.setInvoicePaidCallbackURL( )
-       client = JSONRPC::Client.new('http://localhost:7071')
-       @response = client.setInvoicePaidCallbackURL( invoice_callback_url  )
 
+      begin
+       client = JSONRPC::Client.new('http://localhost:7071')
+       @response = client.setInvoicePaidCallbackURL( {url: invoice_callback_url}  )
+       p 'response is '
+       p @response
+     rescue => ex
+       p 'error: could not connect '
+       p ex
+     end
+     
        return @response
      end
 
