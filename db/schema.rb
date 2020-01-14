@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_031913) do
   end
 
   create_table "currencies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "eth_contract_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_031913) do
     t.integer "product_id", null: false
     t.integer "quantity", null: false
     t.integer "price_currency_id", null: false
-    t.integer "price_raw_units"
+    t.bigint "price_raw_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,27 +60,27 @@ ActiveRecord::Schema.define(version: 2020_01_14_031913) do
     t.integer "order_status"
     t.string "tracking_number"
     t.integer "price_currency_id", null: false
-    t.integer "price_raw_units", null: false
+    t.bigint "price_raw_units", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "parent_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "product_category_id"
-    t.integer "seller_id"
+    t.integer "seller_id", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_currency_id"
-    t.integer "price_raw_units"
+    t.bigint "price_raw_units"
     t.integer "est_shipping_days"
   end
 
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_031913) do
     t.integer "access_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

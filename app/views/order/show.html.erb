@@ -9,12 +9,12 @@
     <div class="column is-two-thirds">
       <h1 class="title"> Shopping Cart </h1>
 
-
+    <%= @order %>
 
     <h1>Order#show</h1>
     <p>Find me in app/views/order/show.html.erb</p>
 
-    <!-- this takes you to the payspec page of the matching UUID -->
+    <!-- this takes you to the payspec page of the matching UUID   -->
     <a href="<%= @order.getInvoiceURL %> ">
       <div class="button" > Pay For Order  </div>
     </a>

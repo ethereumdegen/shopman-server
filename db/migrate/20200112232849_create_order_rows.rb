@@ -6,7 +6,7 @@ class CreateOrderRows < ActiveRecord::Migration[5.2]
       t.integer :quantity, :null => false
 
       t.integer :price_currency_id, :null => false
-      t.integer :price_raw_units #ex. satoshis
+      t.integer :price_raw_units, limit: 8#ex. satoshis
 
 
 

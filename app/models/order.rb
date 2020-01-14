@@ -31,7 +31,7 @@ class Order < ApplicationRecord
      end
 
  def getInvoiceURL
-   return Rails.configuration.PAYSPEC_SERVER_URL + '/invoice/' + self.invoice_uuid
+   return Rails.configuration.PAYSPEC_SERVER_URL + '/invoice.html?uuid=' + self.invoice_uuid
 end
 
 end

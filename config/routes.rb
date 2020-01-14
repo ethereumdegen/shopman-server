@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   resources :product
 
 
-    get 'order/:id'=> 'order#show', as: 'order_show'
-    get 'order/new'
+
+    get 'order/new'=> 'order#new', ad: 'order_new'
+      get 'order/:id'=> 'order#show', as: 'order_show'
     get 'order/invoiceCallback' => 'order#invoiceCallback', as: 'invoice_callback'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
