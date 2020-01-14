@@ -39,6 +39,20 @@ Rails.application.configure do
    Rails.application.routes.default_url_options =  { host: 'http://localhost', port: 3000 }
 
 
+
+   ActionMailer::Base.default :from => "ETHERPUNKS <no-reply@etherpunks.com>"
+
+    config.action_mailer.smtp_settings = {
+        :address              => "smtp.sendgrid.net",
+        :port                 => 587,
+      #  :domain               => "sendgrid.net",
+        :user_name            => 'apikey',
+        :password             =>  Rails.application.credentials.sendgrid_password,
+        :authentication       => :plain,
+        :enable_starttls_auto => true
+  }
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

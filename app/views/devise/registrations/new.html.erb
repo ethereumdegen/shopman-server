@@ -14,6 +14,14 @@
 
   <div class="field">
       <div class="control">
+        <%= f.label "Username" %><br />
+        <%= f.text_field :name, class:"input is-large", autofocus: true  %>
+    </div>
+  </div>
+
+
+  <div class="field">
+      <div class="control">
         <%= f.label :email %><br />
         <%= f.email_field :email, class:"input is-large", autofocus: true, autocomplete: "email" %>
     </div>
