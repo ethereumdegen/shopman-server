@@ -21,6 +21,8 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 
 # installation
 - install ruby 2.5.1 (rvm install 2.5.1)
+- install node 8.16.0 (nvm install 8.16.0)
+- install yarn (https://yarnpkg.com/lang/en/docs/install/#debian-stable)
 - Clone this repo
 - 'gem install bundler:1.16.2'
 - 'bundle'
