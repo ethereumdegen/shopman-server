@@ -19,6 +19,12 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 
 ### Set up
 
+# installation
+- install ruby 2.5.1 (rvm install 2.5.1)
+- Clone this repo
+- 'gem install bundler:1.16.2'
+- 'bundle'
+
 #### postgres
 > sudo -i -u postgres;
 > psql
@@ -35,6 +41,8 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 3) start sidekiq with 'npm run sidekiq'   (necessary to process email)
 
 4) start cron jobs with 'npm run whenever'
+
+
 
 ##### webpack
 npm run webpack
