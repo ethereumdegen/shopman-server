@@ -112,7 +112,7 @@ include PayspecBotHelper
     @order.build_shipping_info(ship_to_name: @ship_info[:name],streetAddress: @ship_info[:streetAddress] ,stateCode: @ship_info[:stateCode] ,zipCode: @ship_info[:zipCode],countryCode: @ship_info[:countryCode])
 
 
-    @order.setOrderStatus(Order::order_statuses[:started])
+    @order.setOrderStatus(Order::order_statuses[:invoiced])
 
     @order.save!
 
@@ -130,10 +130,19 @@ include PayspecBotHelper
 
   def show
     @order = Order.find_by(id: params[:id])
+
+    # this needs to be done by this server on a regular interval 
+    OrderHelper.updateOrderPaidStatusFromBot(@order)
+
+
+    @order_is_paid = @order.hasOrderStatus?(Order::order_statuses[:paid] )
+
+
   end
 
   def invoiceCallback
     @order = Order.find_by(invoice_uuid: params[:order_uuid])
+
     redirect_to order_url(@order)
   end
 

@@ -42,6 +42,7 @@ Rails.application.configure do
 
    ActionMailer::Base.default :from => "ETHERPUNKS <no-reply@etherpunks.com>"
 
+   config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
         :address              => "smtp.sendgrid.net",
         :port                 => 587,

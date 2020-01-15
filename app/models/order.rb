@@ -19,8 +19,9 @@ class Order < ApplicationRecord
   enum order_status: {
    started: 0,
    invoiced: 1,
-   shipped: 2,
-   complete:3
+   paid:2,
+   shipped: 3,
+   complete:4
  }
 
 

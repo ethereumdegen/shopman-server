@@ -11,6 +11,9 @@ gem 'rails_admin', '~> 2.0'
 
 gem 'jsonrpc-client', '~> 0.1.3'
 
+#gem 'whenever'
+gem 'foreman'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -34,8 +37,12 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 
 
-gem 'sidekiq'
+gem 'sidekiq', '~> 4'
+gem 'sidekiq-scheduler'
 
+
+#temp solution to bug w sidekiq page
+gem 'rack', git: 'git@github.com:rack/rack.git', :ref => 'f690bb71425aa31d7b9b3113829af773950d8ab5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
