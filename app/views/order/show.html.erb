@@ -1,4 +1,4 @@
- 
+
 <div class="container constrained pad-md" id="order-show">
 
 
@@ -108,22 +108,67 @@
           </div>
         </div>
 
+          <div class="panel-block">
+            <div class="control">
+              <span class="label">Tracking Number</span>
+               <%= @order.tracking_number %>
+            </div>
+          </div>
+
 
        </article>
     </div>
 
 </div><!-- columns -->
 
-  <div>
+  <div class="columns">
 
 
 
     <div class="whitespace-md"></div>
+    <div class="column is-one-third">
 
-        <!-- this takes you to the payspec page of the matching UUID   -->
-        <a href="<%= @order.getInvoiceURL %> " target="_blank">
-          <div class="button is-success" > Pay For Order  </div>
-        </a>
+      <% if @order_is_shipped %>
+
+          <a href="<%= @order.getInvoiceURL %> " target="_blank">
+            <div class="button is-warning" > Shipped  </div>
+          </a>
+
+          <div class="whitespace-sm"></div>
+
+          <div class="card">
+            <div class="card-content">
+            Your order is on its way!
+           </div>
+         </div>
+
+
+      <% else  %>
+
+          <% if @order_is_paid %>
+
+          <a href="<%= @order.getInvoiceURL %> " target="_blank">
+            <div class="button is-info" > Invoice Paid  </div>
+          </a>
+
+          <div class="whitespace-sm"></div>
+
+          <div class="card">
+            <div class="card-content">
+            Your order is being packed!  You will receive a confirmation with tracking number when these items are shipped.
+          </div>
+         </div>
+
+          <% else %>
+            <!-- this takes you to the payspec page of the matching UUID   -->
+            <a href="<%= @order.getInvoiceURL %> " target="_blank">
+              <div class="button is-success" > Pay For Order  </div>
+            </a>
+            <% end %>
+        <% end %>
+      </div>
+
+
 
         <div class="whitespace-md"></div>
         <div style="display:none">
@@ -131,7 +176,7 @@
       </div>
 
 
-  </div>
+  </div> <!-- columns -->
 
 
 

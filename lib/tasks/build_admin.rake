@@ -13,7 +13,7 @@ namespace :db do
 
     @newpass = SecureRandom.hex
 
-    @existinguser = User.find_by(email: @emailaddress)
+    @existinguser = User.find_by(name: 'admin')
 
     if @existinguser
         @existinguser.destroy

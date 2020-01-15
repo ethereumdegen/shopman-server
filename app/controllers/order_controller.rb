@@ -131,11 +131,12 @@ include PayspecBotHelper
   def show
     @order = Order.find_by(id: params[:id])
 
-    # this needs to be done by this server on a regular interval 
+    # this needs to be done by this server on a regular interval
     OrderHelper.updateOrderPaidStatusFromBot(@order)
 
 
     @order_is_paid = @order.hasOrderStatus?(Order::order_statuses[:paid] )
+    @order_is_shipped = @order.hasOrderStatus?(Order::order_statuses[:shipped] )
 
 
   end

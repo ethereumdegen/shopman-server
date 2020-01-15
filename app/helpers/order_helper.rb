@@ -23,7 +23,13 @@ module OrderHelper
           end
     end
 
-
+    if(@order.tracking_number)
+      if !@order.hasOrderStatus?(Order::order_statuses[:shipped])
+        @order.setOrderStatus(Order::order_statuses[:shipped])
+        p ' set order status to shipped '
+      end
+    end
+   
 
 
   end
