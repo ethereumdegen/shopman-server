@@ -40,12 +40,9 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 2) start redis server in another screen 'redis server'
 3) start sidekiq with 'npm run sidekiq'   (necessary to process email)
 
-4) start cron jobs with 'npm run whenever'
 
-
-
-##### webpack
-npm run webpack
+##### install javascript dependencies
+npm install
 
 #### Running the site
 npm run server
