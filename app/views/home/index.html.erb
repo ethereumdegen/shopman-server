@@ -7,8 +7,9 @@
 
   var featuredProducts = <%= raw @featuredProducts.to_json  %> ;
 
+  <%= if ProductCategory.all.count > 0 %>
   var firstcategoryid =  <%= raw ProductCategory.all.first.id  %> ;
-
+  <% end %>
 
 
 </script>
