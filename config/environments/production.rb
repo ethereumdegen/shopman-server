@@ -68,7 +68,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'etherpunks.com', port: 3000 }
   Rails.application.routes.default_url_options[:host] = 'etherpunks.com'
 
-  Rails.configuration.PAYSPEC_SERVER_URL = '//payspec.etherpunks.com'
+  Rails.configuration.PAYSPEC_SERVER_URL = 'https://payspec.etherpunks.com'
 
 
   ActionMailer::Base.default :from => "ETHERPUNKS <no-reply@etherpunks.com>"
