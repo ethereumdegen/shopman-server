@@ -45,7 +45,8 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 
 ##### install javascript dependencies
 yarn
-npm run webpack
+rake assets:precompile
+rake webpacker:compile
 
 be sure to edit .env!
 
