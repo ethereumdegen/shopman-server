@@ -42,7 +42,7 @@ gem 'sidekiq-scheduler'
 
 
 #temp solution to bug w sidekiq page
-gem 'rack', git: 'git@github.com:rack/rack.git', :ref => 'f690bb71425aa31d7b9b3113829af773950d8ab5'
+gem 'rack', git: 'https://github.com/rack/rack', :ref => 'f690bb71425aa31d7b9b3113829af773950d8ab5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
