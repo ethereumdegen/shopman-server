@@ -90,4 +90,4 @@ production:
   <<: *default
   database: payspec_production
   username: payspec
-  password: <%= ENV['INDIEFUTURE_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials.psql_db_password%>
