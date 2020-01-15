@@ -68,6 +68,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'etherpunks.com', port: 3000 }
   Rails.application.routes.default_url_options[:host] = 'etherpunks.com'
 
+  Rails.configuration.PAYSPEC_SERVER_URL = 'payspec.etherpunks.com'
+
+
   ActionMailer::Base.default :from => "ETHERPUNKS <no-reply@etherpunks.com>"
 
   config.action_mailer.delivery_method = :smtp
@@ -81,7 +84,7 @@ Rails.application.configure do
        :enable_starttls_auto => true
  }
 
- 
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.

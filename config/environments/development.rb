@@ -38,6 +38,8 @@ Rails.application.configure do
    config.action_mailer.default_url_options = { host: 'http://localhost', port: 3000 }
    Rails.application.routes.default_url_options =  { host: 'http://localhost', port: 3000 }
 
+   Rails.configuration.PAYSPEC_SERVER_URL = 'http://localhost:3050'
+
 
 
    ActionMailer::Base.default :from => "ETHERPUNKS <no-reply@etherpunks.com>"
