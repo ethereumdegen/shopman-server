@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:rack/rack.git
+  remote: https://github.com/rack/rack
   revision: f690bb71425aa31d7b9b3113829af773950d8ab5
   ref: f690bb71425aa31d7b9b3113829af773950d8ab5
   specs:
