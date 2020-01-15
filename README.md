@@ -44,9 +44,10 @@ have an artist make cool etherpunks swag , funny references to vitalik , llamas,
 
 
 ##### install javascript dependencies
-npm install
-npm install webpack && webpack-cli
+yarn
 npm run webpack
+
+be sure to edit .env!
 
 #### Running the site
 npm run server
