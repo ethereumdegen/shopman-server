@@ -89,5 +89,6 @@ test:
 production:
   <<: *default
   database: payspec_production
+  host: localhost
   username: payspec
   password: <%= Rails.application.credentials.psql_db_password%>
