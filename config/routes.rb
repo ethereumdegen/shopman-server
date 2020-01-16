@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'faq/getcrypto'
 #  get 'order/new'
 
 #  get 'order/index'
@@ -29,6 +30,10 @@ Rails.application.routes.draw do
 
   post '/order/create' => 'order#create'
   post '/order/getshoppinglistdata' => 'order#getShoppingListData'
+
+
+  get 'getcrypto'=> 'faq#getcrypto'
+
 
   root 'home#index'
 

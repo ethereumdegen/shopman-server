@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_031913) do
+ActiveRecord::Schema.define(version: 2020_01_16_053547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_031913) do
     t.integer "price_currency_id"
     t.bigint "price_raw_units"
     t.integer "est_shipping_days"
+    t.boolean "enabled", default: true
   end
 
   create_table "shipping_infos", force: :cascade do |t|

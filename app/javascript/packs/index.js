@@ -11,6 +11,7 @@ import AlertRenderer from './alert-renderer'
 import HomeRenderer from './home-renderer'
 
 import InvoiceRenderer from './invoice-renderer'
+import GetCryptoRenderer from './get-crypto-renderer'
 
 import ActiveProductsContainerRenderer from './products/active-product-container-renderer'
 
@@ -29,6 +30,7 @@ var genericDashboard = new GenericDashboard();
 
 var alertRenderer = new AlertRenderer();
 var homeRenderer;
+var getCryptoRenderer;
 var invoiceRenderer;
 
 
@@ -43,7 +45,7 @@ $(document).ready(function(){
           var url_parts = url.parse(urlstring, true);
           var query = url_parts.query;
 
-          console.log('query', query)
+          console.log('query2', query)
 
       loadNavbar();
 
@@ -97,6 +99,14 @@ $(document).ready(function(){
 
       }
 
+      if($("#get-crypto").length > 0){
+
+        getCryptoRenderer = new GetCryptoRenderer();
+
+        genericDashboard.init(getCryptoRenderer, query);
+
+
+      }
 
 
 });
@@ -124,5 +134,5 @@ function loadNavbar(){
       });
     });
   }
-  
+
 }
