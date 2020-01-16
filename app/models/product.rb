@@ -14,7 +14,11 @@ class Product < ApplicationRecord
 
   belongs_to :product_category
   belongs_to :seller, class_name: 'User'
-  belongs_to :price_currency, class_name: 'Currency'
+  
+#  belongs_to :price_currency, class_name: 'Currency'
+
+
+  has_many :product_prices
 
 
   #attaching a thumbnail from a controller:

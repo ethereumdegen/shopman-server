@@ -2,17 +2,9 @@
 
 ## Shopman Server
 
+1) Refactor , fix product_price model so its used and not price_currency / price_raw_units
 
-1) Proceed to pay should make a new order
-
-2) The new order will get an 'offchain invoice uuid' from the PaySpec server and immediately redirect the customer to the invoice page with that info
-
-3) need to really clean up the PaySpec bot code, lighten it up and add a config file for 'eth address'  (like how pool does it )
-
-have an artist make cool etherpunks swag , funny references to vitalik , llamas, etc .
-
-
-
+2) allow user to swap between 0xbtc and dai in JS, only show products of the appropriate currency type.  Take this currency type into account when adding a product to the basket.  dont allow checkout w multiple coins but throw an error .
 
 
 

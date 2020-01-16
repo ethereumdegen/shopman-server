@@ -1,4 +1,15 @@
 
+<script type="text/javascript">
+//load in data from rails db
+
+
+  var allcurrencies = <%= raw Currency.all.map{|item| item.getExportData}.to_json  %> ;
+
+
+</script>
+
+
+
 <div class="hero-head ">
   <nav class="navbar <%= yield :navbar_style %>">
         <div class="container">
@@ -14,18 +25,61 @@
  </div>
 
  <div id="navbarExampleTransparentExample" class="navbar-menu has-text-grey-lighter	">
+
+
+
+
+
+
+
+
    <div class="navbar-end">
-     <% if user_signed_in? %>
-     <a class="navbar-item" href="<%= url_for current_user %>">
-        <%= current_user.email %>
-     </a>
 
-     <div class="navbar-item has-dropdown is-hoverable">
-       <a class="navbar-link" href="#">
 
+
+     <div class="navbar-item has-dropdown is-hoverable" id="currency-list">
+       <a class="navbar-link" href="">
+         Currency
        </a>
        <div class="navbar-dropdown is-boxed">
         <!--  <a class="navbar-item" href="#">
+           ITEM 1
+         </a>
+         <a class="navbar-item" href="#">
+           ITEM 2
+         </a>
+         <a class="navbar-item" href="#">
+           ITEM 3
+         </a>
+         <hr class="navbar-divider"> -->
+
+         <a class="navbar-item is-active" v-for="(item,index) in currencies">
+            {{item.name}}
+
+         </a>
+       </div>
+     </div>
+
+
+
+
+
+
+
+
+     <% if user_signed_in? %>
+
+     <div class="navbar-item has-dropdown is-hoverable">
+       <a class="navbar-link" href="">
+          User Account
+       </a>
+       <div class="navbar-dropdown is-boxed">
+         <a class="navbar-item" href="<%= url_for current_user %>">
+            <%= current_user.email %>
+         </a>
+      <!--  <a class="navbar-item" href="#">
+
+
            ITEM 1
          </a>
          <a class="navbar-item" href="#">
