@@ -34,19 +34,19 @@
 > add 'sendgrid_password:'  your sendgrid API key
 
 2) start redis server in another screen 'redis server'
-3) start sidekiq with 'npm run sidekiq'   (necessary to process email)
 
 
-##### install javascript dependencies
+
+##### install javascript dependencies [production only]
 yarn
 rake assets:precompile
 rake webpacker:compile
 
 be sure to edit .env!
 
-#### Running the site
+#### Start the server
 npm run server
 
 
 ## Generate an admin account with: (do not list product as admin!)
-rake db:build_admin[email@gmail.com]
+rake db:build_admin[email@domain.com]
