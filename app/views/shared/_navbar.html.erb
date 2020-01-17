@@ -53,7 +53,7 @@
          </a>
          <hr class="navbar-divider"> -->
 
-         <a class="navbar-item is-active" v-for="(item,index) in currencies">
+         <a    v-for="(item,index) in currencies" v-on:click="onSelectCurrency(item.id)" :class="['navbar-item', {'is-active': item.id == selectedCurrencyId }]">
             {{item.name}}
 
          </a>

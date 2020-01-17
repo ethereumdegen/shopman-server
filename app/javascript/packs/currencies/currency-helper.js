@@ -1,5 +1,17 @@
-
+var registeredTargets = [];
 export default class CurrencyHelper {
+
+
+    registerSelectCurrencyChangeCallback(target)
+    {
+      registeredTargets.push(target);
+    }
+
+    fireOnCurrencyChange()
+    {
+      console.log(registeredTargets)
+      registeredTargets.forEach(t => t.onCurrencyChanged())
+    }
 
 
     setSelectedCurrencyId(currencyId)
@@ -8,6 +20,7 @@ export default class CurrencyHelper {
       console.log('select currency', currencyId )
       sessionStorage.setItem( "primaryCurrencyId",   currencyId  );
 
+      this.fireOnCurrencyChange()
 
     }
 

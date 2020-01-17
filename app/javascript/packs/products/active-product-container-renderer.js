@@ -20,8 +20,9 @@ export default class ActiveProductsContainerRenderer {
     var options = activeProductContainerOptions;
 
 
-    var selectedCurrencyId = CurrencyHelper.getSelectedCurrencyId;
-  //  var selectedCurrency =
+    var selectedCurrencyId = currencyHelper.getSelectedCurrencyId();
+     currencyHelper.registerSelectCurrencyChangeCallback(this);
+
 
     categoryTabSelector = new Vue({
         el: '#category-tabs',
@@ -63,12 +64,16 @@ export default class ActiveProductsContainerRenderer {
             watch:{
               activeTagIndex: function()
               {
-                this.activeProducts =  this.products.filter(item => item.product_category_id == categoryTabSelector.activeTagIndex) //this.getActiveProducts()
+                this.activeProducts = self.getFinishedActiveProducts(this.products,this.activeTagIndex)
+              },
+              selectedCurrencyId: function()
+              {
+                this.activeProducts = self.getFinishedActiveProducts(this.products,this.activeTagIndex)
               }
             },
             computed: {
 
-                getPricedProductData: function(){
+              /*  getPricedProductData: function(){
                         //console.log('getActivePriceOfProduct' , item)
                         //this function will determine what is displayed in the input
                         var result =  this.activeProducts;
@@ -76,7 +81,7 @@ export default class ActiveProductsContainerRenderer {
                         console.log('meep', result)
                         return result;
 
-                    }
+                    }*/
             }
 
 
@@ -101,6 +106,25 @@ export default class ActiveProductsContainerRenderer {
 
         }
 
+
+
+  }
+
+  getFinishedActiveProducts(products,activeTagIndex){
+   var activeProducts =  products.filter(item => item.product_category_id == activeTagIndex)
+
+   activeProducts.forEach( e => e.active_price_data = currencyHelper.getActivePriceFromArray(e.price_data )  ) ;
+
+
+   return activeProducts
+  }
+
+
+  onCurrencyChanged()
+  {
+    console.log('currency change meep', currencyHelper.getSelectedCurrencyId( ))
+
+    Vue.set(productCards, 'selectedCurrencyId', currencyHelper.getSelectedCurrencyId( ))
 
 
   }

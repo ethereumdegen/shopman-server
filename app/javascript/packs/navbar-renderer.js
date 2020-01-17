@@ -6,8 +6,16 @@ import Vue from 'vue/dist/vue.esm.js';
 
 const ContractInterface = require('./contract-interface')
 
+
+
+import CurrencyHelper from './currencies/currency-helper'
+
+var currencyHelper = new CurrencyHelper();
+
+
 var currencyList;
 var ethereumHelper;
+
 
 export default class NavbarRenderer {
 
@@ -21,12 +29,14 @@ export default class NavbarRenderer {
 
       this.loadNavbar()
 
-
+      var selectedCurrencyId = currencyHelper.getSelectedCurrencyId()
+      currencyHelper.registerSelectCurrencyChangeCallback(this);
 
       currencyList =   new Vue({
           el: '#currency-list',
           data: {
-             currencies: allcurrencies
+             currencies: allcurrencies,
+             selectedCurrencyId: selectedCurrencyId
           },
           methods: {
 
@@ -34,13 +44,10 @@ export default class NavbarRenderer {
                   console.log('on update')
 
                 },
-                onSubmitNewInvoice: function (event){
-                  console.log('pay invoice ', this.invoiceUUID)
+                onSelectCurrency: function (id){
+                  console.log('select currency id ' , id)
                   //self.claimName( this.inputName )
-
-
-
-                  self.payInvoice( this.invoiceUUID )
+                  currencyHelper.setSelectedCurrencyId(id);
                 }
             }
         })
@@ -70,6 +77,16 @@ export default class NavbarRenderer {
         */
 
     }
+
+    onCurrencyChanged()
+    {
+      console.log('currency change meep', currencyHelper.getSelectedCurrencyId( ))
+
+      Vue.set(currencyList, 'selectedCurrencyId', currencyHelper.getSelectedCurrencyId( ))
+
+
+    }
+
 
 
 
