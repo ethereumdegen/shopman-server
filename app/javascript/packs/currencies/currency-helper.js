@@ -15,10 +15,13 @@ export default class CurrencyHelper {
     {
       var selectedCurrencyId = sessionStorage.getItem( "primaryCurrencyId"  )
 
-      if(typeof selectedCurrencyId == 'undefined')
+      if( selectedCurrencyId != null)
       {
         //return default currency
-          return 1;
+          return selectedCurrencyId;
+      }else{
+
+        return 1;
       }
 
     }
@@ -27,7 +30,8 @@ export default class CurrencyHelper {
     {
       for(var i=0;i<price_data_array.length;i++)
       {
-        if(price_data_array[i].currency_id == this.getSelectedCurrencyId())
+        console.log('sel cur',this.getSelectedCurrencyId())
+        if(price_data_array[i].currency.id == this.getSelectedCurrencyId())
         {
           return price_data_array[i];
         }

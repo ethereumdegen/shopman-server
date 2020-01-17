@@ -48,8 +48,6 @@ ActiveRecord::Schema.define(version: 2020_01_17_041032) do
     t.integer "order_id", null: false
     t.integer "product_id", null: false
     t.integer "quantity", null: false
-    t.integer "price_currency_id", null: false
-    t.bigint "price_raw_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_01_17_041032) do
     t.integer "priced_id", null: false
     t.string "priced_type", null: false
     t.integer "currency_id"
-    t.integer "price_raw_units"
+    t.bigint "price_raw_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
