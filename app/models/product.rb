@@ -31,13 +31,6 @@ class Product < ApplicationRecord
 
   def getPriceData
     return product_prices.map { |item| item.getExportData }
-
-  #   prices: {
-  #    price_currency: self.price_currency.getExportData,
-  #    price_raw_units: self.price_raw_units,
-
-  #    price_formatted: CurrencyHelper.getPriceFormatted({raw_units: self.price_raw_units, currency: self.price_currency})
-  #  }
   end
 
 
@@ -45,6 +38,8 @@ class Product < ApplicationRecord
     return {id:self.id,
       product_category_id: self.product_category_id,
       name: self.name,
+      description: self.description,
+      est_shipping_days: self.est_shipping_days,
       thumbnailURL: self.getThumbnailURL,
       url: Rails.application.routes.url_helpers.url_for(self),
       seller: (if self.seller then self.seller.getExportData else User.getNullUser end),

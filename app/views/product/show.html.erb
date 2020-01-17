@@ -14,16 +14,21 @@
 
 
 </script>
+<script type="text/javascript">
+//load in data from rails db
+
+    var productData = <%= raw @product.getExportData.to_json %>
+</script>
 
 
 <div class="container constrained pad-md" id="product-show">
 
 
-  <div class="columns">
+  <div class="columns" id="product-details" v-cloak>
 
 
         <div class="column is-one-third">
-          <img src="<%= @product.getThumbnailURL  %> "> </img>
+          <img v-bind:src="product.thumbnailURL"> </img>
         </div>
 
         <div class="column is-one-third">
@@ -31,28 +36,34 @@
         </div>
 
     <div class="column is-one-third">
-      <h1 class="title"> <%= @product.name %> </h1>
+      <h1 class="title"> {{product.name}}  </h1>
       <hr>
-      <h2 class="subtitle" style="min-height:25vh"> <%= @product.description %> </h2>
+      <h2 class="subtitle" style="min-height:25vh"> {{product.description}}  </h2>
       <hr>
 
       <div class="content-row centered ">
+
+
+
           <div class="subtitle is-8 overflow-ellipsis">
              Price:
 
-               <div style="display:inline-block; text-align:top; ">  <img src="<%= @product.price_currency.getThumbnailURL %>" height="16px" width="16px"></img> </div>
-               <div style="display:inline-block; text-align:top; ">  <%=  @product.getPriceData[:price_formatted] %>  </div>
+               <div style="display:inline-block; text-align:top; ">  <img v-bind:src=" activePriceData.currency.thumbnailURL " height="16px" width="16px"></img> </div>
+               <div style="display:inline-block; text-align:top; ">   {{activePriceData.price_formatted  }}    </div>
           </div>
+
+
+
 
           <div class="subtitle is-8 overflow-ellipsis">
              Est. Ship Time (days):
 
-             <div style="display:inline-block; text-align:top; ">  <%= @product.est_shipping_days %> </div>
+             <div style="display:inline-block; text-align:top; ">  {{product.est_shipping_days}}   </div>
 
           </div>
 
           <div>
-            <div class="button" id="add-to-cart"> Add To Cart </div>
+            <div class="button is-success" id="add-to-cart"> Add To Cart </div>
           </div>
       </div>
 

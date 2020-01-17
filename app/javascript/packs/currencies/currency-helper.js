@@ -1,3 +1,5 @@
+//might be handling this improperly as a singleton..
+
 var registeredTargets = [];
 export default class CurrencyHelper {
 
