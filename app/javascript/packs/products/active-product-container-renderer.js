@@ -2,6 +2,10 @@ var $ = require("jquery");
 import Vue from 'vue/dist/vue.esm.js';
 
 
+import CurrencyHelper from '../currencies/currency-helper'
+
+var currencyHelper = new CurrencyHelper();
+
 var categoryTabSelector;
 var productCards;
 
@@ -15,6 +19,9 @@ export default class ActiveProductsContainerRenderer {
 
     var options = activeProductContainerOptions;
 
+
+    var selectedCurrencyId = CurrencyHelper.getSelectedCurrencyId;
+  //  var selectedCurrency =
 
     categoryTabSelector = new Vue({
         el: '#category-tabs',
@@ -40,7 +47,9 @@ export default class ActiveProductsContainerRenderer {
           el: '#product-cards',
           data: {
              products: featuredProducts,
-             activeProducts: []
+             activeProducts: [],
+             activeTagIndex : 0,
+             selectedCurrencyId: selectedCurrencyId
 
           },
           methods: {
@@ -50,7 +59,26 @@ export default class ActiveProductsContainerRenderer {
                 }
 
 
+            },
+            watch:{
+              activeTagIndex: function()
+              {
+                this.activeProducts =  this.products.filter(item => item.product_category_id == categoryTabSelector.activeTagIndex) //this.getActiveProducts()
+              }
+            },
+            computed: {
+
+                getPricedProductData: function(){
+                        //console.log('getActivePriceOfProduct' , item)
+                        //this function will determine what is displayed in the input
+                        var result =  this.activeProducts;
+                        result.forEach( e => e.active_price_data = currencyHelper.getActivePriceFromArray(e.price_data )  ) ;
+                        console.log('meep', result)
+                        return result;
+
+                    }
             }
+
 
         })
 
@@ -81,19 +109,21 @@ export default class ActiveProductsContainerRenderer {
   {
     console.log('selected category',index)
 
-    this.updateActiveProducts();
+      Vue.set(productCards, 'activeTagIndex', index)
+
+  //  this.updateActiveProducts();
   }
 
-  updateActiveProducts()
+  /*updateActiveProducts()
   {
     var newArray = [];
 
-   newArray = productCards.products.filter(item => item.product_category_id == categoryTabSelector.activeTagIndex)
+    newArray = productCards.products.filter(item => item.product_category_id == categoryTabSelector.activeTagIndex)
 
 
     Vue.set(productCards, 'activeProducts', newArray)
 
-  }
+  }*/
 
 
 }

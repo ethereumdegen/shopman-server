@@ -3,7 +3,7 @@
 <div class="columns">
 
 
-<div class="column is-one-quarter" v-for="(item,index) in activeProducts" >
+<div class="column is-one-quarter" v-for="(item,index) in getPricedProductData" >
 
 <div class="card" >
 
@@ -38,8 +38,8 @@
 
       <div class="content-row centered ">
           <div class="subtitle is-8 overflow-ellipsis">
-               <div style="display:inline-block; text-align:top; ">  <img v-bind:src="item.price_data.price_currency.thumbnailURL" height="16px" width="16px"></img> </div>
-               <div style="display:inline-block; text-align:top; ">  {{item.price_data.price_formatted}} </div>
+               <div style="display:inline-block; text-align:top; ">  <img v-bind:src="item.active_price_data.currency.thumbnailURL" height="16px" width="16px"></img> </div>
+               <div style="display:inline-block; text-align:top; ">  {{item.active_price_data.price_formatted}} </div>
           </div>
       </div>
 
