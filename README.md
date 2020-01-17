@@ -15,6 +15,8 @@
 - install ruby 2.5.1 (rvm install 2.5.1)
 - install node 8.16.0 (nvm install 8.16.0)
 - install yarn (https://yarnpkg.com/lang/en/docs/install/#debian-stable)
+- install libpq-dev (required for postgres, apt-get install libpq-dev)
+- install postgres (https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
 - Clone this repo
 - 'gem install bundler:1.16.2'
 - 'bundle'
