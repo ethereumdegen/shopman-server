@@ -1,4 +1,4 @@
-module OrderHelper
+module WorkerHelpers::OrderHelper
 
   include PayspecBotHelper
 
@@ -30,7 +30,7 @@ module OrderHelper
         p ' set order status to shipped '
       end
     end
-     
+
 
 
   end

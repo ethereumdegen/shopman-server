@@ -6,6 +6,7 @@ class OrderController < ApplicationController
 include OrderHelper
 include CurrencyHelper
 include PayspecBotHelper
+include ProductHelper
 
   def new
 
@@ -47,8 +48,10 @@ include PayspecBotHelper
 
       @order = Order.new( )
 
-    @currency = Currency.all.first
+    @currency = Currency.all.first  #this should be a param
     @subtotalRaw = 0
+
+
 
 
     # calc subtotal first
@@ -59,9 +62,12 @@ include PayspecBotHelper
 
       @quantity = item[:quantity].to_i
       @product = Product.find_by_id(item_id)
-      @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
-      @order.order_rows.build(product_id: @product.id, quantity: @quantity, price_currency_id: @product.price_currency_id, price_raw_units: @product.price_raw_units )
+      @product_price_of_currency = ProductHelper.getPriceOfCurrency( @product , @currency   )
 
+      @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
+
+      @order_row = @order.order_rows.build(product_id: @product.id, quantity: @quantity     )
+      @order_row.product_prices.build( currency: @product_price_of_currency.currency, price_raw_units: @product_price_of_currency.price_raw_units  )
     end
 
 

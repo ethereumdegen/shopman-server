@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
 
   validates :seller_id , :presence => true
-  validates :price_currency_id , :presence => true
+#  validates :price_currency_id , :presence => true
   validates :est_shipping_days , :presence => true
 
   has_many :order_rows
@@ -14,11 +14,11 @@ class Product < ApplicationRecord
 
   belongs_to :product_category
   belongs_to :seller, class_name: 'User'
-  
+
 #  belongs_to :price_currency, class_name: 'Currency'
 
 
-  has_many :product_prices
+  has_many :product_prices, as: :priced, :inverse_of => :priced
 
 
   #attaching a thumbnail from a controller:
@@ -30,11 +30,14 @@ class Product < ApplicationRecord
   end
 
   def getPriceData
-    return {
-      price_currency: self.price_currency.getExportData,
-      price_raw_units: self.price_raw_units,
-      price_formatted: CurrencyHelper.getPriceFormatted({raw_units: self.price_raw_units, currency: self.price_currency})
-    }
+    return product_prices.map { |item| item.getExportData }
+
+  #   prices: {
+  #    price_currency: self.price_currency.getExportData,
+  #    price_raw_units: self.price_raw_units,
+
+  #    price_formatted: CurrencyHelper.getPriceFormatted({raw_units: self.price_raw_units, currency: self.price_currency})
+  #  }
   end
 
 

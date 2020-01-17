@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_053547) do
+ActiveRecord::Schema.define(version: 2020_01_17_041032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_053547) do
   end
 
   create_table "currencies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "eth_contract_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,21 +66,28 @@ ActiveRecord::Schema.define(version: 2020_01_16_053547) do
   end
 
   create_table "product_categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "parent_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_prices", force: :cascade do |t|
+    t.integer "priced_id", null: false
+    t.string "priced_type", null: false
+    t.integer "currency_id"
+    t.integer "price_raw_units"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.integer "product_category_id"
-    t.integer "seller_id"
+    t.integer "seller_id", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price_currency_id"
-    t.bigint "price_raw_units"
     t.integer "est_shipping_days"
     t.boolean "enabled", default: true
   end
@@ -110,7 +117,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_053547) do
     t.integer "access_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
+    t.string "name", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
