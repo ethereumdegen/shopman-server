@@ -65,6 +65,13 @@
           <div>
             <div class="button is-success" id="add-to-cart"> Add To Cart </div>
           </div>
+
+              <div class="pad-md">
+                <div class="notification is-danger " v-if="errorMessage">
+                 
+                   <strong>ERROR: </strong> {{errorMessage}}
+                </div>
+              </div>
       </div>
 
     </div>

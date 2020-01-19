@@ -81,7 +81,7 @@ include ProductHelper
       end
 
         # fix me
-         p 'meep1'
+
 
 #the payspec server will automatically fill in the recipient address and the refNumber(increments)
     payspecData = {
@@ -90,10 +90,11 @@ include ProductHelper
       description: (Rails.configuration.APPNAME+' Order')
     }
 
-             p 'meep2'
+
 
     PayspecBotHelper.setInvoicePaidCallbackURL() #init
 
+    # locking up here 
     @invoiceUUID = PayspecBotHelper.generateOffchainInvoice( payspecData )
 
     p 'got invoice uuid '
@@ -228,7 +229,7 @@ include ProductHelper
        @subtotalFormatted = CurrencyHelper.getPriceFormatted({currency: @currency, raw_units: @subtotalRaw})
 
       respond_to do |format|
-        format.js { render json: {success:true, shoppingList:  @list, currency: @currency.getExportData, subtotalRaw: @subtotalRaw, subtotalFormatted: @subtotalFormatted , currency: @currency}.to_json }
+        format.js { render json: {success:true, shoppingList:  @list, currency: @currency.getExportData, subtotalRaw: @subtotalRaw, subtotalFormatted: @subtotalFormatted  }.to_json }
         format.html
       end
 

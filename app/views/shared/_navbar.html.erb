@@ -67,40 +67,46 @@
 
 
 
-     <% if user_signed_in? %>
+
 
      <div class="navbar-item has-dropdown is-hoverable">
        <a class="navbar-link" href="">
           User Account
        </a>
        <div class="navbar-dropdown is-boxed">
-         <a class="navbar-item" href="<%= url_for current_user %>">
+
+          <% if user_signed_in? %>
+
+          <div class="navbar-item">
             <%= current_user.email %>
+          </div>
+          
+         <a class="navbar-item" href="<%= url_for current_user %>">
+            User Profile
          </a>
-      <!--  <a class="navbar-item" href="#">
+
+         <a class="navbar-item" href="<%= url_for order_new_path %>">
+            Shopping Cart
+         </a>
 
 
-           ITEM 1
-         </a>
-         <a class="navbar-item" href="#">
-           ITEM 2
-         </a>
-         <a class="navbar-item" href="#">
-           ITEM 3
-         </a>
-         <hr class="navbar-divider"> -->
+         <hr class="navbar-divider">
 
          <a class="navbar-item is-active" href="#">
            <%= link_to('Logout', destroy_user_session_path , class:'navbar-item') %>
 
          </a>
+
+         <% else %>
+
+            <%= link_to('Login', new_user_session_path, class:'navbar-item')  %>
+
+         <% end %>
+
+
        </div>
      </div>
-     <% else %>
 
-        <%= link_to('Login', new_user_session_path, class:'navbar-item')  %>
-
-     <% end %>
 
 
    </div>

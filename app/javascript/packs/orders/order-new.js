@@ -5,7 +5,7 @@ import Vue from 'vue/dist/vue.esm.js';
 
 import ShoppingCartHelper from './shopping-cart-helper'
 
-var shoppingCartHelper = new ShoppingCartHelper();
+//var shoppingCartHelper = new ShoppingCartHelper();
 
 var shoppingList;
 var shippingInformation;
@@ -34,6 +34,15 @@ export default class OrderNew {
 
       console.log('cart2 is ', cart )
 
+      var currency = allcurrencies[0]
+
+      console.log('currency is ', currency )
+
+
+      if(cart.currency != null)
+      {
+        currency = cart.currency
+      }
 
       var shoppingListData = cart.shoppingList
       console.log('shopping list is ', shoppingListData )
@@ -47,7 +56,7 @@ export default class OrderNew {
           data: {
              shoppingRows: shoppingListData,
              subtotalFormatted: subtotalFormatted,
-             currency:currency
+             currency: currency
 
           },
           methods: {
@@ -144,7 +153,7 @@ export default class OrderNew {
 
 
 
-     //  console.log('meep',shipping)
+        console.log('submitOrderCreate',shipping)
 
       var response = new Promise((resolve, reject) => {
         $.ajax({
@@ -159,13 +168,13 @@ export default class OrderNew {
           success: function(data) {
             console.log('got ajax response', data )
 
-            if(data.success){
+            if(data.success == true){
               ShoppingCartHelper.clearShoppingCart()
               console.log('redirecting to ', data.redirect_url)
                window.location.href = data.redirect_url
             }else{
               //throw alert, alert helper?
-              console.error(data.message)
+              console.error('ERROR:', data.message)
             }
 
 

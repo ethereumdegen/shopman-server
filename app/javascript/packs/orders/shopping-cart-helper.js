@@ -12,7 +12,6 @@ export default class ShoppingCartHelper {
 
 
 
-
         var existingIndex = ShoppingCartHelper.getIndexOfItemInCart( productId, currencyId )
 
         if(existingIndex == -1){
@@ -56,10 +55,10 @@ export default class ShoppingCartHelper {
       return false
     }
 
-   
 
 
-    static getIndexOfItemInCart(productId)
+
+    static getIndexOfItemInCart(productId, currencyId)
     {
       var cart = ShoppingCartHelper.getCurrentShoppingCart();
 
@@ -67,7 +66,7 @@ export default class ShoppingCartHelper {
       {
         var row = cart[i];
 
-        if(row.product_id == productId)
+        if(row.product_id == productId && row.currency_id == currencyId)
         {
           return i;
         }

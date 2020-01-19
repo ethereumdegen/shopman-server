@@ -5,7 +5,7 @@ import Vue from 'vue/dist/vue.esm.js';
 
 import ShoppingCartHelper from '../orders/shopping-cart-helper'
 
-var shoppingCartHelper = new ShoppingCartHelper();
+//var shoppingCartHelper = new ShoppingCartHelper();
 
 
 import CurrencyHelper from '../currencies/currency-helper'
@@ -33,7 +33,8 @@ export default class ProductShow {
           data: {
              product: productData,
              activePriceData: currencyHelper.getActivePriceFromArray( productData.price_data ), //productData.price_data[0],
-             selectedCurrencyId: selectedCurrencyId
+             selectedCurrencyId: selectedCurrencyId,
+             errorMessage: null
 
 
           },
@@ -67,7 +68,7 @@ export default class ProductShow {
 
     onCurrencyChanged()
     {
-      console.log('currency change meep', currencyHelper.getSelectedCurrencyId( ))
+      console.log('currency change meep!', currencyHelper.getSelectedCurrencyId( ))
 
       Vue.set(productDetails, 'selectedCurrencyId', currencyHelper.getSelectedCurrencyId( ))
 
@@ -83,10 +84,19 @@ export default class ProductShow {
       var productId = productData.id;
       var quantity = 1;
       var currencyId = currencyHelper.getSelectedCurrencyId( );
-      ShoppingCartHelper.addItemToCart(1,1,1)
+      var response = ShoppingCartHelper.addItemToCart(productId,1,currencyId)
 
-      //redirect to new order page
-      window.location.href = '/order/new'
+      if(response.success == true)
+      {
+        //redirect to new order page
+        window.location.href = '/order/new'
+
+      }else{
+        Vue.set(productDetails, 'errorMessage', response.message)
+
+        console.log('ERROR: ', response.message)
+      }
+
 
     }
 

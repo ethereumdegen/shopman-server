@@ -24,6 +24,10 @@ export default class ActiveProductsContainerRenderer {
      currencyHelper.registerSelectCurrencyChangeCallback(this);
 
 
+
+     if(featuredProducts == null || featuredProducts.length < 1) return;
+
+
     categoryTabSelector = new Vue({
         el: '#category-tabs',
         data: {
@@ -124,7 +128,11 @@ export default class ActiveProductsContainerRenderer {
   {
     console.log('currency change meep', currencyHelper.getSelectedCurrencyId( ))
 
-    Vue.set(productCards, 'selectedCurrencyId', currencyHelper.getSelectedCurrencyId( ))
+    if(productCards != null)
+    {
+      Vue.set(productCards, 'selectedCurrencyId', currencyHelper.getSelectedCurrencyId( ))
+
+    }
 
 
   }
