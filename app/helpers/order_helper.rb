@@ -29,7 +29,7 @@ module OrderHelper
         p ' set order status to shipped '
       end
     end
-   
+
 
 
   end
@@ -38,7 +38,7 @@ module OrderHelper
 
   def self.cartItemsHaveDifferentCurrencies?(cart)
 
-    @currency = nil
+    @previouscurrency = nil
 
     cart.each do |row|
       p 'row is '
@@ -46,21 +46,27 @@ module OrderHelper
        index = row[0]
        item = row[1]
 
-      item_id = item[:product_id].to_i
+      prod_id = item[:product_id].to_i
+      currency_id = item[:currency_id].to_i
 
-       @product = Product.find_by_id(item_id)
+       @product = Product.find_by_id(prod_id)
+       @currency = Currency.find_by_id(currency_id)
 
-        if @currency == nil || @product.price_currency == @currency then
-          @currency = @product.price_currency
+
+        if @previouscurrency == nil || @previouscurrency == @currency then
+          @previouscurrency = @currency
         else
           return true
-        end
+        end 
 
-
-      return false
     end
 
+
+    return false
   end
+
+
+
 
 
 end

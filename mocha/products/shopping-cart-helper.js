@@ -9,9 +9,9 @@ describe('Array', function() {
   describe('add product', function() {
     it('should properly add product to cart', function(){
 
-        var cart = shoppingCartHelper.addItemToCart(1,1)
+        var cart = ShoppingCartHelper.addItemToCart(1,1,1)
 
-        var expected = [ { product_id: 1, quantity: 1 } ]
+        var expected = [ { product_id: 1, quantity: 1, currency_id: 1 } ]
 
         console.log('cart is ',  JSON.stringify(cart))
 
@@ -20,9 +20,9 @@ describe('Array', function() {
 
 
 
-        var cart = shoppingCartHelper.addItemToCart(1,1)
+        var cart = ShoppingCartHelper.addItemToCart(1,1, 1)
 
-        var expected = [ { product_id: 1, quantity: 2 } ]
+        var expected = [ { product_id: 1, quantity: 2, currency_id: 1 } ]
 
         console.log('cart is ',  JSON.stringify(cart))
 

@@ -76,13 +76,14 @@ export default class ProductShow {
 
 
 
-    addToCart(  )
+    addToCart(  ) // ??
     {
-        console.log('add to cart!')
+        console.log('add to cart!', productData )
 
-      var productId = 1;
+      var productId = productData.id;
       var quantity = 1;
-      shoppingCartHelper.addItemToCart(1,1)
+      var currencyId = currencyHelper.getSelectedCurrencyId( );
+      ShoppingCartHelper.addItemToCart(1,1,1)
 
       //redirect to new order page
       window.location.href = '/order/new'

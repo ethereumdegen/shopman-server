@@ -16,7 +16,7 @@ export default class OrderNew {
     {
 
       var self = this;
-
+      console.log('order new ')
       await this.renderShoppingList();
 
 
@@ -25,17 +25,20 @@ export default class OrderNew {
     async renderShoppingList()
     {
       var self = this ;
-      var cart = shoppingCartHelper.getCurrentShoppingCart()
+      var cart = ShoppingCartHelper.getCurrentShoppingCart()
 
-      console.log('cart is ',cart, cart.length)
+      console.log('CART is ',cart, cart.length)
 
       //need to hit rails w an ajax call
       var cart = await this.getShoppingListDataFromCart(cart);
 
+      console.log('cart2 is ', cart )
+
+
       var shoppingListData = cart.shoppingList
       console.log('shopping list is ', shoppingListData )
 
-
+ 
       var subtotalRaw = cart.subtotalRaw;
       var subtotalFormatted = cart.subtotalFormatted;
 
@@ -57,7 +60,7 @@ export default class OrderNew {
                 },
                 resetCart: function(event){
                   console.log('reset cart ')
-                  shoppingCartHelper.clearShoppingCart(),
+                  ShoppingCartHelper.clearShoppingCart(),
                   // self.renderShoppingList()
                    Vue.set(shoppingList, 'shoppingRows', [])
                    Vue.set(shoppingList, 'subtotalFormatted', 0)
@@ -129,7 +132,7 @@ export default class OrderNew {
 
     async submitOrderCreate()
     {
-      var cart = shoppingCartHelper.getCurrentShoppingCart()
+      var cart = ShoppingCartHelper.getCurrentShoppingCart()
 
       var shipping = {
         name: shippingInformation.name,
@@ -139,7 +142,7 @@ export default class OrderNew {
         zipCode: shippingInformation.zipCode
       }
 
-        shoppingCartHelper.clearShoppingCart()
+        ShoppingCartHelper.clearShoppingCart()
 
      //  console.log('meep',shipping)
 

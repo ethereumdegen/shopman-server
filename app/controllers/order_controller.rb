@@ -180,7 +180,8 @@ include ProductHelper
       end
 
 
-      if OrderHelper.cartItemsHaveDifferentCurrencies?(cart)
+
+      if OrderHelper.cartItemsHaveDifferentCurrencies?(cart)   #broken!
         respond_to do |format|
           format.js { render json: {success:false, message: 'Cart items use different currencies' }.to_json }
           format.html
@@ -190,20 +191,24 @@ include ProductHelper
 
 
 
-
     #  p cart.to_s
 
        cart.each do |row|
          p 'item is '
          index = row[0]
          item = row[1]
-         item_id = item[:product_id].to_i
+         prod_id = item[:product_id].to_i
+         currency_id = item[:currency_id].to_i
 
          @quantity = item[:quantity].to_i
-         @product = Product.find_by_id(item_id)
-         @currency = @product.price_currency
-         @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
-         @list << {product_id: @product.id, product: @product.getExportData, quantity: @quantity }
+         @product = Product.find_by_id(prod_id)
+         @currency = Currency.find_by_id(currency_id)
+         @price_data = ProductHelper.getPriceOfCurrency(@product,@currency).getExportData
+
+         @subtotalRaw = @price_data[:price_raw_units] * @quantity
+          p 'subtotal raw'
+          p @subtotalRaw
+         @list << {product_id: @product.id, product: @product.getExportData, quantity: @quantity , price_data: @price_data}
        end
 
        p @list
@@ -228,12 +233,12 @@ include ProductHelper
 
 private
     def shoppingCartParams
-      params.permit(cart: [:product_id,:quantity])
+      params.permit(cart: [:product_id,:quantity,:currency_id])
     end
 
 
     def orderCreationParams
-      params.permit(cart: [:product_id,:quantity],  shipping: [:name, :streetAddress, :stateCode, :zipCode, :countryCode ] )
+      params.permit(cart: [:product_id,:quantity,:currency_id],  shipping: [:name, :streetAddress, :stateCode, :zipCode, :countryCode ] )
     end
 
 
