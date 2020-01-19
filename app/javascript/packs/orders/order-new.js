@@ -38,7 +38,7 @@ export default class OrderNew {
       var shoppingListData = cart.shoppingList
       console.log('shopping list is ', shoppingListData )
 
- 
+
       var subtotalRaw = cart.subtotalRaw;
       var subtotalFormatted = cart.subtotalFormatted;
 
@@ -142,7 +142,7 @@ export default class OrderNew {
         zipCode: shippingInformation.zipCode
       }
 
-        ShoppingCartHelper.clearShoppingCart()
+
 
      //  console.log('meep',shipping)
 
@@ -160,6 +160,8 @@ export default class OrderNew {
             console.log('got ajax response', data )
 
             if(data.success){
+              ShoppingCartHelper.clearShoppingCart()
+              console.log('redirecting to ', data.redirect_url)
                window.location.href = data.redirect_url
             }else{
               //throw alert, alert helper?

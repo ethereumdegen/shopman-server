@@ -5,7 +5,7 @@ module OrderHelper
 
   def self.updateOrderPaidStatusFromBot(order)
     @order = order
-
+    p @order
 
 
     @updatedOffchainInvoiceData = PayspecBotHelper.getInvoiceData(@order.invoice_uuid)
@@ -57,7 +57,7 @@ module OrderHelper
           @previouscurrency = @currency
         else
           return true
-        end 
+        end
 
     end
 

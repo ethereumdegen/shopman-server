@@ -4,7 +4,7 @@ class Currency < ApplicationRecord
 
   validates :name , :presence => true, :uniqueness => true
   validates :decimals , :presence => true
-
+   validates :eth_contract_address , :presence => true
 
   has_one_attached :thumbnail
 

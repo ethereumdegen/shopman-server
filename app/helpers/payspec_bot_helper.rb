@@ -38,6 +38,10 @@ module PayspecBotHelper
 
    def self.generateOffchainInvoice( args )
 
+
+     p 'generate offchain invoice'
+     p args
+
      @uuid = nil
 
 

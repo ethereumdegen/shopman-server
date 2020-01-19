@@ -9,7 +9,7 @@ class CreateProductPrices < ActiveRecord::Migration[5.2]
 
 
       t.integer :currency_id
-      t.integer :price_raw_units, limit: 8 
+      t.integer :price_raw_units, limit: 8
 
       t.timestamps
     end

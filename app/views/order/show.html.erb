@@ -36,8 +36,8 @@
             <td>
                 <div class="content-row   ">
                   <div class="subtitle is-8 overflow-ellipsis">
-                       <div style="display:inline-block; text-align:top; ">  <img  src="<%= row.price_currency.getThumbnailURL %> " height="16px" width="16px"></img> </div>
-                       <div style="display:inline-block; text-align:top; "> <%= row.product.getPriceData[:price_formatted] %>   </div>
+                       <div style="display:inline-block; text-align:top; ">  <img  src="<%= row.product_price.currency.getThumbnailURL %> " height="16px" width="16px"></img> </div>
+                       <div style="display:inline-block; text-align:top; "> <%= row.product_price.getExportData[:price_formatted] %>   </div>
                   </div>
               </div>
            </td>

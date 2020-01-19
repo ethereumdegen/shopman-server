@@ -18,7 +18,7 @@ include ProductHelper
 
     parameters = orderCreationParams.to_h
 
-    p 'params '
+    p 'create order w params '
     p parameters
 
     @cart = parameters[:cart]
@@ -48,29 +48,40 @@ include ProductHelper
 
       @order = Order.new( )
 
-    @currency = Currency.all.first  #this should be a param
+  ##  @currency = Currency.all.first  #this should be a param
     @subtotalRaw = 0
 
+      p 'meepo '
 
 
 
-    # calc subtotal first
-    @cart.each do |row|
-      index = row[0]
-      item = row[1]
-      item_id = item[:product_id].to_i
-
-      @quantity = item[:quantity].to_i
-      @product = Product.find_by_id(item_id)
-      @product_price_of_currency = ProductHelper.getPriceOfCurrency( @product , @currency   )
-
-      @subtotalRaw = @subtotalRaw + (@product.price_raw_units * @quantity)
-
-      @order_row = @order.order_rows.build(product_id: @product.id, quantity: @quantity     )
-      @order_row.product_prices.build( currency: @product_price_of_currency.currency, price_raw_units: @product_price_of_currency.price_raw_units  )
-    end
 
 
+      @cart.each do |row|
+        p 'item is '
+        index = row[0]
+        item = row[1]
+        p item
+        prod_id = item[:product_id].to_i
+        currency_id = item[:currency_id].to_i
+
+        @quantity = item[:quantity].to_i
+        @product = Product.find_by_id(prod_id)
+        @currency = Currency.find_by_id(currency_id)
+        @price_data = ProductHelper.getPriceOfCurrency(@product,@currency).getExportData
+
+        @subtotalRaw = @price_data[:price_raw_units] * @quantity
+
+         p 'subtotal raw'
+         p @subtotalRaw
+
+         @order_row = @order.order_rows.build(product_id:prod_id, quantity: @quantity     )
+
+         @order_row.build_product_price( currency: @currency, price_raw_units: @price_data[:price_raw_units]  )
+      end
+
+        # fix me
+         p 'meep1'
 
 #the payspec server will automatically fill in the recipient address and the refNumber(increments)
     payspecData = {
@@ -79,6 +90,7 @@ include ProductHelper
       description: (Rails.configuration.APPNAME+' Order')
     }
 
+             p 'meep2'
 
     PayspecBotHelper.setInvoicePaidCallbackURL() #init
 

@@ -2,6 +2,7 @@ class Order < ApplicationRecord
 
 
   validates :subtotal_currency_id , :presence => true
+  validates :invoice_uuid , :presence => true
 
 
   belongs_to :user, optional: true
