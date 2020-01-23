@@ -27,18 +27,19 @@ require 'rails_helper'
         @token = Currency.create(name:"0xBTC", decimals:8,eth_contract_address:"0xb6ed7644c69416d67b522e20bc294a9a9b405b31" )
         @token.save!
 
-        @item = Product.create(name:"Sticker", seller: @seller , product_category: @product_category, est_shipping_days: 7, price_currency:@token, price_raw_units: 100000000 )
+        @item = Product.create(name:"Sticker", seller: @seller , product_category: @product_category, est_shipping_days: 7 )
+        @item.product_prices.build(currency: @token, price_raw_units: 100000000 )
         @item.save!
 
           p Currency.all.first
 
 
 
-          cart =  ( {cart: {"0"=>{product_id:@item.id, quantity:2}}, shipping:{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}})
+          cart =  ( {cart: {"0"=>{product_id:@item.id, quantity:2, currency_id: @token.id}}, shipping:{"name"=>"a", "streetAddress"=>"b", "stateCode"=>"cd", "countryCode"=>"US", "zipCode"=>"d"}})
 
 
         post "create", params: (cart)
- 
+
 
         expect(response).to be_truthy
       #  follow_redirect!
