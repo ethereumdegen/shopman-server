@@ -4,6 +4,7 @@
   "scripts": {
     "server": "foreman start",
     "test": "bundle exec rspec   ",
+    "precompile": "rake assets:precompile",
     "webpack": "rake webpacker:compile",
     "mocha": "./node_modules/mocha/bin/mocha --require @babel/polyfill --require @babel/register --require mock-local-storage 'mocha/**/*.js'",
     "sidekiq": "bundle exec sidekiq -C ./config/sidekiq.yml",
@@ -29,7 +30,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.8.0",
     "@babel/polyfill": "^7.7.0",
-    "@babel/preset-env": "^7.1.6", 
+    "@babel/preset-env": "^7.1.6",
     "@babel/runtime": "^7.8.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^0.28.11",
