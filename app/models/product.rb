@@ -59,15 +59,15 @@ class Product < ApplicationRecord
   def quantityInStock
 
     quantity = self.getTotalQuantityIn - self.getTotalQuantityCommitted
-    p quantity
+ 
     return quantity
   end
 
   def getTotalQuantityIn
     result = 0
 
-      stock_changes.each do |change|
-        result += change.delta
+      stock_changes.each do |row|
+        result += row.delta
       end
 
     return result
@@ -78,7 +78,7 @@ class Product < ApplicationRecord
 
       order_rows.each do |row|
         if(row.order.hasOrderStatus?(Order::order_statuses[:paid]))
-          result += change.quantity
+          result += row.quantity
         end
       end
 
@@ -90,7 +90,7 @@ class Product < ApplicationRecord
 
       order_rows.each do |row|
         if(row.order.hasOrderStatus?(Order::order_statuses[:shipped]))
-          result += change.quantity
+          result += row.quantity
         end
       end
 
