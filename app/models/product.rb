@@ -2,7 +2,7 @@
 class Product < ApplicationRecord
 
   include CurrencyHelper
-
+  include ActionView::Helpers::TextHelper
 
   validates :seller_id , :presence => true
 #  validates :price_currency_id , :presence => true
@@ -39,6 +39,7 @@ class Product < ApplicationRecord
       product_category_id: self.product_category_id,
       name: self.name,
       description: self.description,
+      simple_format_description:  simple_format(self.description),
       est_shipping_days: self.est_shipping_days,
       thumbnailURL: self.getThumbnailURL,
       url: Rails.application.routes.url_helpers.url_for(self),

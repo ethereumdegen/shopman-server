@@ -38,7 +38,7 @@
     <div class="column is-one-third">
       <h1 class="title"> {{product.name}}  </h1>
       <hr>
-      <h2 class="subtitle" style="min-height:25vh"> {{product.description}}  </h2>
+      <h2 class="subtitle" style="min-height:25vh" v-html="product.simple_format_description">    </h2>
       <hr>
 
       <div class="content-row centered ">
@@ -68,7 +68,7 @@
 
               <div class="pad-md">
                 <div class="notification is-danger " v-if="errorMessage">
-                 
+
                    <strong>ERROR: </strong> {{errorMessage}}
                 </div>
               </div>
