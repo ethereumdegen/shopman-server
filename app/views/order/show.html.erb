@@ -68,11 +68,13 @@
 
     <div class="column is-one-third">
 
+
       <article class="panel is-primary" id="shipping-info">
          <p class="panel-heading">
            Shipping Information
          </p>
 
+           <% if @order.shipping_info %>
          <div class="panel-block">
            <div class="control">
              <span class="label">Ship To Name</span>
@@ -115,8 +117,9 @@
             </div>
           </div>
 
-
+          <% end %> 
        </article>
+
     </div>
 
 </div><!-- columns -->
