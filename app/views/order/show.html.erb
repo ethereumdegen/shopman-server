@@ -31,8 +31,10 @@
 
         <tr >
             <th> <a href="<%= url_for row.product %>"> <%= row.product.name %> </a> </th>
-            <td> <%= row.product.est_shipping_days %> </td>
+
             <td> <%= row.quantity %> </td>
+            <td> <%= row.product.est_shipping_days %> </td>
+
             <td>
                 <div class="content-row   ">
                   <div class="subtitle is-8 overflow-ellipsis">
@@ -117,7 +119,7 @@
             </div>
           </div>
 
-          <% end %> 
+          <% end %>
        </article>
 
     </div>
