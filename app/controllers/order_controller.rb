@@ -70,7 +70,7 @@ include ProductHelper
         @currency = Currency.find_by_id(currency_id)
         @price_data = ProductHelper.getPriceOfCurrency(@product,@currency).getExportData
 
-        @subtotalRaw = @price_data[:price_raw_units] * @quantity
+        @subtotalRaw = @subtotalRaw + @price_data[:price_raw_units] * @quantity
 
          p 'subtotal raw'
          p @subtotalRaw
@@ -94,7 +94,7 @@ include ProductHelper
 
     PayspecBotHelper.setInvoicePaidCallbackURL() #init
 
-    # locking up here 
+    # locking up here
     @invoiceUUID = PayspecBotHelper.generateOffchainInvoice( payspecData )
 
     p 'got invoice uuid '
@@ -218,7 +218,7 @@ include ProductHelper
          @currency = Currency.find_by_id(currency_id)
          @price_data = ProductHelper.getPriceOfCurrency(@product,@currency).getExportData
 
-         @subtotalRaw = @price_data[:price_raw_units] * @quantity
+         @subtotalRaw = @subtotalRaw + @price_data[:price_raw_units] * @quantity
           p 'subtotal raw'
           p @subtotalRaw
          @list << {product_id: @product.id, product: @product.getExportData, quantity: @quantity , price_data: @price_data}
