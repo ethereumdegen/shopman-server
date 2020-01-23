@@ -97,21 +97,21 @@
          <div class="panel-block">
            <div class="control">
              <span class="label">Ship To Name</span>
-             <input class="input" v-model="name"></input>
+             <input class="input" v-model="name" minlength=2></input>
            </div>
          </div>
 
          <div class="panel-block">
            <div class="control">
              <span class="label">Street Address / PO Box</span>
-             <input class="input" v-model="streetAddress"></input>
+             <input class="input" v-model="streetAddress" minlength=2></input>
            </div>
          </div>
 
          <div class="panel-block">
            <div class="control">
              <span class="label">State Code</span>
-             <input class="input" v-model="stateCode"></input>
+             <input class="input" v-model="stateCode" minlength=2></input>
            </div>
          </div>
 
@@ -125,7 +125,7 @@
          <div class="panel-block">
            <div class="control">
              <span class="label">Zip Code</span>
-             <input class="input" v-model="zipCode"></input>
+             <input class="input" v-model="zipCode" minlength=5 ></input>
            </div>
          </div>
 
@@ -134,6 +134,15 @@
              <div class="button is-success is-pulled-right " v-on:click="submitOrder">Proceed To Pay</div>
            </div>
          </div>
+
+
+         <div class="pad-md">
+           <div class="notification is-danger " v-if="errorMessage">
+
+              <strong>ERROR: </strong> {{errorMessage}}
+           </div>
+         </div>
+
        </article>
 
 

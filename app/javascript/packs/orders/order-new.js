@@ -89,7 +89,8 @@ export default class OrderNew {
               streetAddress: '',
               stateCode: '',
               zipCode: '',
-              countryCode: 'US'
+              countryCode: 'US',
+              errorMessage: null
               // shoppingRows: shoppingListData
 
             },
@@ -102,7 +103,19 @@ export default class OrderNew {
                       console.log('quantity change ' )  //like input change
                   },
                   submitOrder: function(event){
-                    self.submitOrderCreate()
+                      this.errorMessage = null;
+
+
+
+                      if(self.shippingInfoIsValid())
+                      {
+                          self.submitOrderCreate()
+                      }else{
+                          this.errorMessage = 'Please fill in shipping information.'
+                      }
+
+
+
                   }
 
 
@@ -136,6 +149,35 @@ export default class OrderNew {
       })
 
 
+    }
+
+
+    shippingInfoIsValid()
+    {
+
+      if( shippingInformation.name == null ||  shippingInformation.name.length < 2)
+      {
+        return false;
+      }
+
+      if( shippingInformation.streetAddress == null ||  shippingInformation.streetAddress.length < 2)
+      {
+        return false;
+      }
+
+      if( shippingInformation.stateCode == null ||  shippingInformation.stateCode.length < 2)
+      {
+        return false;
+      }
+
+      if( shippingInformation.zipCode == null ||  shippingInformation.zipCode.length < 5)
+      {
+        return false;
+      }
+
+
+
+      return true;
     }
 
 
