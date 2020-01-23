@@ -56,13 +56,16 @@
 
 
           <div class="subtitle is-8 overflow-ellipsis">
-             Est. Ship Time (days):
-
-             <div style="display:inline-block; text-align:top; ">  {{product.est_shipping_days}}   </div>
+              <div v-if="product.inStock">
+                In Stock
+              </div>
+              <div v-if="!product.inStock" class="notification is-danger">
+                Out Of Stock
+              </div>
 
           </div>
 
-          <div>
+          <div v-if="product.inStock">
             <div class="button is-success" id="add-to-cart"> Add To Cart </div>
           </div>
 

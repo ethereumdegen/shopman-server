@@ -8,7 +8,12 @@ class Product < ApplicationRecord
 #  validates :price_currency_id , :presence => true
   validates :est_shipping_days , :presence => true
 
+
+
   has_many :order_rows
+  has_many :stock_changes
+
+
 
   has_one_attached :thumbnail
 
@@ -39,6 +44,8 @@ class Product < ApplicationRecord
       product_category_id: self.product_category_id,
       name: self.name,
       description: self.description,
+      quantityInStock: self.quantityInStock,
+      inStock: (self.quantityInStock > 0),
       simple_format_description:  simple_format(self.description),
       est_shipping_days: self.est_shipping_days,
       thumbnailURL: self.getThumbnailURL,
@@ -46,6 +53,48 @@ class Product < ApplicationRecord
       seller: (if self.seller then self.seller.getExportData else User.getNullUser end),
       price_data: self.getPriceData
      }
+  end
+
+
+  def quantityInStock
+
+    quantity = self.getTotalQuantityIn - self.getTotalQuantityCommitted
+    p quantity
+    return quantity
+  end
+
+  def getTotalQuantityIn
+    result = 0
+
+      stock_changes.each do |change|
+        result += change.delta
+      end
+
+    return result
+  end
+
+  def getTotalQuantityCommitted
+    result = 0
+
+      order_rows.each do |row|
+        if(row.order.hasOrderStatus?(Order::order_statuses[:paid]))
+          result += change.quantity
+        end
+      end
+
+    return result
+  end
+
+  def getTotalQuantityOut
+    result = 0
+
+      order_rows.each do |row|
+        if(row.order.hasOrderStatus?(Order::order_statuses[:shipped]))
+          result += change.quantity
+        end
+      end
+
+    return result
   end
 
 end

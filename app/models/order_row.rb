@@ -1,7 +1,7 @@
 class OrderRow < ApplicationRecord
 
-
-  # validates :product_price , :presence => true, :uniqueness => true
+  validates :product , :presence => true
+  validates :order , :presence => true
 
   belongs_to :order
   belongs_to :product
