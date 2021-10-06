@@ -37,7 +37,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 
 
-gem 'sidekiq', '~> 4'
+gem 'sidekiq', '~> 5'
 gem 'sidekiq-scheduler'
 
 
